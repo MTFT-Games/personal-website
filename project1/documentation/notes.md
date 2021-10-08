@@ -19,3 +19,6 @@
 
 ## Fonts
 -
+
+## Resources
+- https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp
