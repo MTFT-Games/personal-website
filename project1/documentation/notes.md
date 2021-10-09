@@ -11,6 +11,7 @@
 
 # Inspirations
 - Project section look and layout: https://www.chauhogamedesigner.com/
+- General https://github.com/dccircuit/IGME-235-Fall-2021/blob/main/exercises/projects.md
 
 # Sources
 
@@ -23,3 +24,4 @@
 ## Resources
 - https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp
 - https://necolas.github.io/normalize.css/8.0.1/normalize.css
+- https://codepen.io/mcraig218/pen/uqIae

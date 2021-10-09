@@ -20,7 +20,7 @@ h1 {
     margin: 0 0.25em; 
     font-size: 1.5em;
 }
-.nav-bar a {
+a {
     text-decoration: none;
     color: unset;
 }
@@ -44,7 +44,7 @@ main { font-size: 1.3rem; }
     grid-template-rows: auto;
     grid-template-areas: ". bio . photo";
     align-items: center;
-    margin-top: 4em;
+    margin-top: 3em;
 }
 #about article { 
     grid-area: bio;
@@ -55,3 +55,39 @@ main { font-size: 1.3rem; }
     width: 600px;
 }
 #about img { grid-area: photo; }
+
+/* Gallery */
+#projects { background-color: dimgray; }
+#projects h2 {
+    text-align: center;
+    padding: 1em;
+}
+.gallery {
+    display: flex;
+    justify-content: center;
+    margin: 0 10vw;
+}
+.hover-details { 
+    position: relative;
+    margin: 2em;
+}
+.hover-details div {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.hover-details * {
+    transition: .3s all;
+}
+.hover-details:hover img {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+}
+.hover-details:hover div {
+    opacity: 1;
+}
