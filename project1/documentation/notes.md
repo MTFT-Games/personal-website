@@ -22,3 +22,4 @@
 
 ## Resources
 - https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp
+- https://necolas.github.io/normalize.css/8.0.1/normalize.css
