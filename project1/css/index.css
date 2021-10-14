@@ -83,6 +83,12 @@ a {
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.3);
 }
+.hover-details div p, .hover-details div h3 {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .hover-details div p {
     margin-bottom: 4em;
 }
