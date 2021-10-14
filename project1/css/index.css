@@ -71,14 +71,20 @@ a {
     margin: 2em;
 }
 .hover-details div {
-    text-align: center;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     width: 100%;
     opacity: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.hover-details div p {
+    margin-bottom: 4em;
+}
+.hover-details div a {
+    padding: 1em;
+    background-color: blue;
 }
 .hover-details * {
     transition: .3s all;
