@@ -102,8 +102,8 @@ a {
 }
 .project h3 {
     margin: 0;
-    padding: 2em 0;
-    background-image: url(https://via.placeholder.com/2000x100);
+    padding: 3em 0;
+    background-image: url(https://via.placeholder.com/2000x200);
     grid-area: header;
 }
 .proj-main-desc { 
