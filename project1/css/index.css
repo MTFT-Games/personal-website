@@ -8,7 +8,7 @@ main { font-size: 1.3rem; }
 /* Nav bar */
 .nav-bar {
     display: flex;
-    padding: 1rem 10vw;
+    padding: 1rem 3vw;
     align-items: center;
     background-color: darkslategray;
     font-size: 1.5rem;
