@@ -122,11 +122,25 @@ a {
 }
 .project .figs { grid-area: figures; }
 figure { margin: 1em 0; }
-.project iframe { 
+.proj-demo { 
     grid-area: video;
-    width: 845px;
-    height: 480px;
+    /*width: 845px;
+    height: 480px;*/
+    left: 0; 
+    width: 100%;
+    height: 0;
+    position: relative;
+    padding-bottom: 56.25%;
     margin: 0 auto 2em;
+}
+.proj-demo iframe {
+    border: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    position: absolute;
 }
 .proj-desc { grid-area: desc; }
 .project {

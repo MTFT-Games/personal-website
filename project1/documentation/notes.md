@@ -25,6 +25,7 @@
 - https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp
 - https://necolas.github.io/normalize.css/8.0.1/normalize.css
 - https://codepen.io/mcraig218/pen/uqIae
+- https://jsfiddle.net/e2d50fym/3/
 
 
 # Prototypes and feedback
