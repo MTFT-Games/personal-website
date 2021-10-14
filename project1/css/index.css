@@ -93,13 +93,12 @@ a {
 /* Projects */
 .project {
     display: grid;
-    grid-template-columns: 5vw 2fr 426px 5vw;
-    grid-template-rows: auto 1fr 1fr;
-    grid-template-areas: "header header    header  header"
-                         "...... main-desc figures ......"
-                         "...... video     desc    ......";
-    /* 5 columns */
-    /* 4 rows */
+    grid-template-columns: 5vw 2fr 2em 426px 5vw;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "header header    header header  header"
+                         "...... main-desc ...... figures ......"
+                         "...... video     ...... desc    ......";
+    /* Consider changing this to two grid columns with a vertical flex container in each. */
 }
 .project h3 {
     margin: 0;
@@ -107,14 +106,22 @@ a {
     background-image: url(https://via.placeholder.com/2000x100);
     grid-area: header;
 }
-.proj-main-desc { grid-area: main-desc; }
+.proj-main-desc { 
+    grid-area: main-desc;
+}
 .project .figs { grid-area: figures; }
 figure { margin: 1em 0; }
 .project iframe { 
     grid-area: video;
+    width: 845px;
+    height: 480px;
+    margin: 0 auto 2em;
 }
 .proj-desc { grid-area: desc; }
-.project { background-color: rgba(0, 0, 0, 0.8); }
+.project {
+    background-color: rgba(0, 0, 0, 0.8);
+    line-height: 1.2em;
+}
 
 /* General */
-.center-txt { text-align: center; }
+.center-txt, figure { text-align: center; }
