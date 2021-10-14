@@ -57,9 +57,13 @@ a {
 #about img { grid-area: photo; }
 
 /* Gallery */
-#projects { background-color: dimgray; }
+#projects { 
+    background-color: dimgray; 
+    margin-top: 4em;
+}
 #projects h2 {
-    padding: 1em;
+    padding-top: 1.5em;
+    margin-bottom: 0;
 }
 .gallery {
     display: flex;
@@ -132,3 +136,7 @@ figure { margin: 1em 0; }
 
 /* General */
 .center-txt, figure { text-align: center; }
+.fine-print { 
+    margin: 0;
+    padding: 0;
+}
