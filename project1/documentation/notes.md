@@ -16,10 +16,24 @@
 # Sources
 
 ## Images
--
+- https://brandeps.com/logo/C/C-Sharp-01
+- https://commons.wikimedia.org/wiki/File:ISO_C%2B%2B_Logo.svg
+- https://en.wikipedia.org/wiki/File:Java_programming_language_logo.svg
+- https://icon-icons.com/icon/java-logo/168609
+- https://commons.wikimedia.org/wiki/File:HTML5_logo_and_wordmark.svg
+- https://commons.wikimedia.org/wiki/File:CSS3_logo_and_wordmark.svg
+- https://commons.wikimedia.org/wiki/File:Unofficial_JavaScript_logo_2.svg
+- https://commons.wikimedia.org/wiki/File:MonoGame_Logo.svg
+- https://www.sfml-dev.org/download/goodies/
+- https://commons.wikimedia.org/wiki/File:Box2D_logo.svg
+- https://seeklogo.com/vector-logo/274050/unity
+- https://commons.wikimedia.org/wiki/File:Visual_Studio_Icon_2019.svg
+- https://worldvectorlogo.com/logo/maya-2017
+- https://commons.wikimedia.org/wiki/File:Git-logo.svg
+- https://commons.wikimedia.org/wiki/File:The_GIMP_icon_-_gnome.svg
 
 ## Fonts
--
+- 
 
 ## Resources
 - https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp
