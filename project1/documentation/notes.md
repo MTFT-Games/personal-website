@@ -31,6 +31,8 @@
 - https://worldvectorlogo.com/logo/maya-2017
 - https://commons.wikimedia.org/wiki/File:Git-logo.svg
 - https://commons.wikimedia.org/wiki/File:The_GIMP_icon_-_gnome.svg
+- https://commons.wikimedia.org/wiki/File:Hamburger_icon.svg
+- https://seekicon.com/free-icon/keyboard-arrow-down_2
 
 ## Fonts
 - 

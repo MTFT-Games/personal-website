@@ -2,11 +2,12 @@ html { scroll-behavior: smooth; }
 body { 
     background-color: grey;
     color: white;
+    overflow-x: hidden;
 }
 main { font-size: 1.3rem; }
 
 /* Nav bar */
-.nav-bar {
+header {
     display: flex;
     padding: 1rem 3vw;
     align-items: center;
@@ -29,7 +30,16 @@ a {
     text-decoration: none;
     color: unset;
 }
+#mobile-nav-btn, #mobile-nav-lbl {
+    display: none;
+}
+.nav-bar {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
 .nav-link { 
+    display: block;
     padding: 0 0.5em;
     font-weight: bold;
 }
@@ -37,16 +47,24 @@ a {
     position: relative;
     overflow: visible;
 }
-.nav-dropdown ul { display: none; }
-.nav-dropdown:hover ul {
-    display: block;
+.nav-dropdown ul { 
     position: absolute;
+    transition: all 0.3s ease-in-out;
+    transform-origin: top;
+    transform: scaleY(0);
     margin: 0;
     right: 0;
     width: max-content;
     padding: 0.2em;
     list-style: none;
     background-color: rgba(0, 0, 0, 0.3);
+}
+.nav-dropdown:hover ul {
+    transform: scaleY(1);
+}
+.nav-link img {
+    height: 0.6em;
+    padding-left: 0.2em;
 }
 
 /* About */
@@ -182,6 +200,37 @@ figure { margin: 1em 0; }
 @media only screen and (max-width: 1300px) {
     .tagline { display: none; }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 900px) {
     .tagline { display: none; }
+    .nav-bar { 
+        display: block;
+        position: absolute;
+        top: 100px;
+        right: -100vw;
+        background-color: grey;
+        transition: all 0.3s ease-in-out;
+        font-size: 2em;
+    }
+    .nav-link {
+        border-bottom: 1px solid black;
+    }
+    #mobile-nav-lbl {
+        display: block;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+    }
+    #mobile-nav-lbl img {
+        height: 100%;
+    }
+    #mobile-nav-btn:checked+.nav-bar {
+        right: 0px;
+    }
+    .nav-dropdown ul {
+        display: none;
+        position: static;
+    }
+    .nav-dropdown:hover ul {
+        display: block;
+    }
 }
