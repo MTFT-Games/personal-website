@@ -21,6 +21,7 @@ header {
 }
 .nav-logo img {
     margin-right: 1em;
+    height: 2.5em;
 }
 h1 { 
     margin: 0; 
@@ -206,6 +207,9 @@ figure img {
 }
 @media only screen and (max-width: 900px) {
     .tagline { display: none; }
+    header, main {
+        font-size: unset;
+    }
     .nav-bar { 
         display: none;
         position: absolute;
@@ -214,13 +218,15 @@ figure img {
         background-color: grey;
         font-size: 2em;
     }
+    .nav-logo {
+        height: 2em;
+    }
     .nav-link {
         border-bottom: 1px solid black;
     }
     #mobile-nav-lbl {
         display: block;
-        width: 60px;
-        height: 60px;
+        height: 2em;
         cursor: pointer;
     }
     #mobile-nav-lbl img {
