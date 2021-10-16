@@ -202,6 +202,9 @@ figure { margin: 1em 0; }
 }
 @media only screen and (max-width: 900px) {
     .tagline { display: none; }
+    header {
+        overflow-x: hidden;
+    }
     .nav-bar { 
         display: block;
         position: absolute;
