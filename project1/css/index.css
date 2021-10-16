@@ -59,11 +59,16 @@ a {
     background-color: darkslategray;
     box-sizing: border-box;
     padding: 1.5em;
+}
+.bio {
     width: 33%;
     line-height: 1.5em;
 }
 #about article h2 {
     margin-top: 0;
+}
+.skills {
+    line-height: 3em;
 }
 
 /* Gallery */
