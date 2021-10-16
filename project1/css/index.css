@@ -100,6 +100,7 @@ a {
 .gallery {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 .hover-details { 
     position: relative;
@@ -159,6 +160,9 @@ a {
 }
 .project .figs { grid-area: figures; }
 figure { margin: 1em 0; }
+figure img {
+    width: 100%;
+}
 .proj-demo { 
     grid-area: video;
     /*width: 845px;
@@ -202,16 +206,12 @@ figure { margin: 1em 0; }
 }
 @media only screen and (max-width: 900px) {
     .tagline { display: none; }
-    header {
-        overflow-x: hidden;
-    }
     .nav-bar { 
-        display: block;
+        display: none;
         position: absolute;
         top: 100px;
-        right: -100vw;
+        right: 0;
         background-color: grey;
-        transition: all 0.3s ease-in-out;
         font-size: 2em;
     }
     .nav-link {
@@ -227,7 +227,7 @@ figure { margin: 1em 0; }
         height: 100%;
     }
     #mobile-nav-btn:checked+.nav-bar {
-        right: 0px;
+        display: block;
     }
     .nav-dropdown ul {
         display: none;
@@ -235,5 +235,17 @@ figure { margin: 1em 0; }
     }
     .nav-dropdown:hover ul {
         display: block;
+    }
+
+    #about {
+        flex-direction: column;
+    }
+    .bio {
+        width: unset;
+    }
+
+    .project {
+        display: flex;
+        flex-direction: column;
     }
 }
