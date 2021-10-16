@@ -33,11 +33,20 @@ a {
     padding: 0 0.5em;
     font-weight: bold;
 }
+.nav-dropdown {
+    position: relative;
+    overflow: visible;
+}
 .nav-dropdown ul { display: none; }
 .nav-dropdown:hover ul {
     display: block;
     position: absolute;
     margin: 0;
+    right: 0;
+    width: max-content;
+    padding: 0.2em;
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* About */
