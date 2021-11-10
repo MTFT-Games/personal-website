@@ -1,8 +1,67 @@
 // Yes, this is here for anyone to take or mess with and it should be in a backend app not exposed in the frontend. Thats not doable at the moment so for now just dont screw with it please.
 const personalKey = 'pk_3POMJ8BNYN8ZH0IXBEIUS1VJ9W8FZWXV';
 
+let tasksSection;
+let apiCounter;
+let currentRequest;
+let loadedTasks = [];
+
+window.onload = (e) => {
+    tasksSection = document.querySelector('#tasks');
+    apiCounter = document.querySelector('#apiremaining');
+}
+
+// Loads all tasks from the workspace the event source is in.
+function GetWorkspaceTasks(target) {
+    tasksSection.innerHTML = '<img src="media/acurate-loading-bar.gif" alt="loading">';
+    currentRequest = {
+        page:0,
+        type:'workspaceTasks',
+        id:target.parentNode.dataset.id
+    }
+    loadedTasks = [];
+    Request();
+}
 
 
+// Sends request to url and calls the callback function when finished.
+function Request() {
+    let url;
+    let callback;
+    switch (currentRequest.type) {
+        case 'workspaceTasks':
+            url = 'team/' + currentRequest.id + '/task?page=' + currentRequest.page + '&reverse=true&subtasks=true';
+            callback = TasksLoaded;
+            break;
+    
+        default:
+            break;
+    }
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.onload = callback;
+    xhr.open("GET", 'https://noahemke.com/cors-anywhere/api.clickup.com/api/v2/' + url);
+    xhr.setRequestHeader('Authorization', personalKey);
+    xhr.send();
+}
+
+function TasksLoaded(e) {
+    let tasks = JSON.parse(e.target.responseText)["tasks"];
+    loadedTasks.push.apply(loadedTasks, tasks);
+    if (tasks.length == 100) {
+        currentRequest.page++;
+        Request();
+    }else {
+        DisplayTasks();
+    }
+    apiCounter.innerHTML = "API usage left this minute: " + e.target.getResponseHeader('x-ratelimit-remaining') + "/100";
+}
+
+function DisplayTasks() {
+    console.log(loadedTasks);
+    tasksSection.innerHTML = "";
+}
 /*       gif-finder below for reference to get started
 // 1
 window.onload = (e) => { document.querySelector("#search").onclick = searchButtonClicked };
