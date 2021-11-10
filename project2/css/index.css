@@ -7,7 +7,7 @@ body {
 main { font-size: 1.3rem; }
 
 /* Nav bar */
-header {
+body>header {
     display: flex;
     padding: 1rem 3vw;
     align-items: center;
