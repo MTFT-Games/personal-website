@@ -93,6 +93,7 @@ main {
     grid-template-rows: 2em 1fr;
 }
 #hierarchy {
+    position: relative;
     background-color: dimgray;
     grid-column: 1 / span 1;
     grid-row: 1 / -1;
@@ -109,6 +110,11 @@ main {
 }
 .droparrow img {
     height: 100%
+}
+#apiremaining {
+    position: absolute;
+    bottom: 0.5em;
+    left: 0.5em;
 }
 
 /* Responsive breakpoints */
