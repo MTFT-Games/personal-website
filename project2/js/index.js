@@ -1,4 +1,5 @@
-
+// Yes, this is here for anyone to take or mess with and it should be in a backend app not exposed in the frontend. Thats not doable at the moment so for now just dont screw with it please.
+const personalKey = 'pk_3POMJ8BNYN8ZH0IXBEIUS1VJ9W8FZWXV';
 
 
 

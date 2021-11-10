@@ -3,6 +3,9 @@ body {
     background-color: grey;
     color: white;
     overflow-x: hidden;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 main { font-size: 1.3rem; }
 
@@ -81,7 +84,32 @@ a {
 .icon { 
     position: relative;
     top: 1em;
-    height: 2.5em; }
+    height: 2.5em; 
+}
+
+main {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 2em 1fr;
+}
+#hierarchy {
+    background-color: dimgray;
+    grid-column: 1 / span 1;
+    grid-row: 1 / -1;
+    padding: 1em 2em;
+}
+#hierarchy ul {
+    margin: 0;
+    padding: 0;
+}
+.droparrow {
+    padding: 0;
+    margin: 0;
+    height: 1.5em;
+}
+.droparrow img {
+    height: 100%
+}
 
 /* Responsive breakpoints */
 @media only screen and (max-width: 1320px) {

@@ -23,3 +23,4 @@ If you are hoping to use a "choose your own" API, you must also include a link t
 ## Images
 - https://commons.wikimedia.org/wiki/File:Hamburger_icon.svg
 - https://seekicon.com/free-icon/keyboard-arrow-down_2
+- https://commons.wikimedia.org/wiki/File:Ic_arrow_drop_down_36px.svg
