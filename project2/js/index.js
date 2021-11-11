@@ -101,14 +101,13 @@ function DisplayTasks() {
     }
     
     
-    // for priority sort by sort then filter into 5 priorities
     // for tag sort by sort then add each to its group 1 by 1 creating it if its not made
     // for due date sort by sort then filter for each date range
 
     // Sort and group tasks based on settings.
     let groups = [];
     switch (settings.group.value) {
-        case "status":
+        case "status":{
             // Sort to find the biggest status index.
             tasks.sort(StatusSort);
             let numGroups = tasks[tasks.length - 1].status.orderindex;
@@ -143,7 +142,8 @@ function DisplayTasks() {
                 }
             }
             break;
-        case "priority":
+        }
+        case "priority":{
             // Sort according to setting.
             switch (settings.sort.value) {
                 case "duedate":
@@ -182,6 +182,67 @@ function DisplayTasks() {
                 }
             }
             break;
+        }
+        case "tag":{
+            // Sort according to setting.
+            switch (settings.sort.value) {
+                case "duedate":
+                    tasks.sort(DueSort);
+                    break;
+                case "status":
+                    tasks.sort(StatusSort);
+                    break;
+                case "name":
+                    tasks.sort(NameSort);
+                    break;
+                case "priority":
+                    tasks.sort(PrioritySort);
+                    break;
+                case "created":
+                    tasks.sort(CreatedSort);
+                    break;
+                default:
+                    break;
+            }
+
+            // Filter into groups.
+            let groupTasks = tasks.filter(e => e.tags.length == 0);
+            if (groupTasks.length > 0) {
+                groups.push({
+                    name:'none',
+                    color:'#ffffff',
+                    bcolor:'#000000',
+                    tasks:groupTasks
+                });
+            }
+            // This block felt disgusting to write, heres an explanation so future me doesn't have a stroke trying to figure it out:
+            tasks.forEach(task => {// For each task
+                if (task.tags.length > 0) {// that has tags
+                    task.tags.forEach(tag => {// Go through each tag
+                        let found = false;
+                        // And look through all groups for a matching one
+                        for (let i = 0; i < groups.length; i++) {
+                            if (groups[i].name == tag.name) {
+                                // And add the task if found
+                                groups[i].tasks.push(task);
+                                found = true;
+                                break;
+                            }
+                        }
+                        // Otherwise make a new group for that tag if one wasnt found already
+                        if (!found) {
+                            groups.push({
+                                name:tag.name,
+                                color:tag.tag_fg,
+                                bcolor:tag.tag_bg,
+                                tasks:[task]
+                            });
+                        }
+                    });
+                }
+            });
+            break;
+        }
 
             // TODO: Sort and group for other groupings.
 
