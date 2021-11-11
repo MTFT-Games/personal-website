@@ -143,7 +143,24 @@ function DisplayTasks() {
                 }
             }
             break;
-    
+        case "priority":
+            // Sort according to setting.
+            switch (settings.sort.value) {
+                case "duedate":
+                    tasks.sort(DueSort);
+                    break;
+                // TODO: Sort by status
+                case "name":
+                    tasks.sort(NameSort);
+                    break;
+                case "created":
+                    tasks.sort(CreatedSort);
+                    break;
+                default:
+                    break;
+            }
+            break;
+
             // TODO: Sort and group for other groupings.
 
         default:
