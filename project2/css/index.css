@@ -117,6 +117,8 @@ main {
     left: 0.5em;
 }
 
+/* TODO: Style error popup. */
+
 /* Responsive breakpoints */
 @media only screen and (max-width: 1320px) {
     .tagline { display: none; }

@@ -53,7 +53,9 @@ function Request() {
         // TODO: Other request types when needed.
 
         default:
-            // TODO: Error
+            let errormsg = "Invalid request type " + currentRequest.type + " encountered.";
+            console.error(errormsg);
+            ErrorPopup(errormsg);
             break;
     }
 
@@ -153,4 +155,25 @@ function DueSort(a, b) {
     return a.due_date - b.due_date;
 }
 
-// TODO: Error catching
+// Creates and displays a neat error to the user.
+function ErrorPopup(msg) {
+    let popup = document.createElement('div');
+    popup.className = "errorpopup";
+    let common = document.createElement('h1');
+    common.innerHTML = "An error has ocurred in this apps javascript. You may need to refresh the page for a clean start or you can dismiss this message and see if the app recovers. If this is a repeating issue, please report the issue with the following error to noahremke@gmail.com.";
+    popup.appendChild(common);
+    let errortxt = document.createElement('p');
+    errortxt.innerHTML = msg;
+    popup.appendChild(errortxt);
+    let button = document.createElement('button');
+    button.type = 'button';
+    button.innerHTML = "OK";
+    button.onclick = DismissMsg;
+    popup.appendChild(button);
+    document.body.appendChild(popup);
+}
+
+// Removes the error popup the event target is part of.
+function DismissMsg(e) {
+    e.target.parentNode.remove();
+}
