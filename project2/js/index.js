@@ -100,7 +100,7 @@ function DisplayTasks() {
         tasks = loadedTasks;
     }
     
-    // for status sort by status and find biggest status index to know how many groups to filter out. then sort by sort, then filter
+    
     // for priority sort by sort then filter into 5 priorities
     // for tag sort by sort then add each to its group 1 by 1 creating it if its not made
     // for due date sort by sort then filter for each date range
@@ -149,7 +149,9 @@ function DisplayTasks() {
                 case "duedate":
                     tasks.sort(DueSort);
                     break;
-                // TODO: Sort by status
+                case "status":
+                    tasks.sort(StatusSort);
+                    break;
                 case "name":
                     tasks.sort(NameSort);
                     break;
@@ -158,6 +160,26 @@ function DisplayTasks() {
                     break;
                 default:
                     break;
+            }
+
+            // Filter into groups.
+            let groupTasks = tasks.filter(e => e.priority == null);
+            if (groupTasks.length > 0) {
+                groups.push({
+                    name:'none',
+                    color:'#000000',
+                    tasks:groupTasks
+                });
+            }
+            for (let i = 4; i > 0; i--) {
+                groupTasks = tasks.filter(e => e.priority != null && e.priority.orderindex == i);
+                if (groupTasks.length > 0) {
+                    groups.push({
+                        name:groupTasks[0].priority.priority,
+                        color:groupTasks[0].priority.color,
+                        tasks:groupTasks
+                    });
+                }
             }
             break;
 
