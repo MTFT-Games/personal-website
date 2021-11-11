@@ -149,7 +149,7 @@ function DisplayTasks() {
         default:
             break;
     }
-    // DEBUG: console.log(groups);
+    console.log(groups);
 
 
     // TODO: Make and display html of the sorted groups depending on view
@@ -170,6 +170,12 @@ function StatusSort(a, b) {
 
 // Sorting function for sorting tasks by due date.
 function DueSort(a, b) {
+    if (a.due_date == null) {
+        return 1;
+    }
+    if (b.due_date == null) {
+        return -1;
+    }
     return a.due_date - b.due_date;
 }
 
