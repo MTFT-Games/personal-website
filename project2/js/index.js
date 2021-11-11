@@ -118,7 +118,10 @@ function DisplayTasks() {
                 case "duedate":
                     tasks.sort(DueSort);
                     break;
-                
+                case "name":
+                    tasks.sort(NameSort);
+                    break;
+
                 // TODO: Other sort types.
 
                 default:
@@ -153,6 +156,11 @@ function StatusSort(a, b) {
 // Sorting function for sorting tasks by due date.
 function DueSort(a, b) {
     return a.due_date - b.due_date;
+}
+
+// Sorting function for sorting tasks by name.
+function NameSort(a, b) {
+    a = a.name.toLo
 }
 
 // Creates and displays a neat error to the user.
