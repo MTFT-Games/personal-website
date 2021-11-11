@@ -101,7 +101,7 @@ function DisplayTasks() {
     }
     
     
-    // for tag sort by sort then add each to its group 1 by 1 creating it if its not made
+
     // for due date sort by sort then filter for each date range
 
     // Sort and group tasks based on settings.
@@ -241,6 +241,30 @@ function DisplayTasks() {
                     });
                 }
             });
+            break;
+        }
+        case "duedate":{
+            // Sort according to setting.
+            switch (settings.sort.value) {
+                case "duedate":
+                    tasks.sort(DueSort);
+                    break;
+                case "status":
+                    tasks.sort(StatusSort);
+                    break;
+                case "name":
+                    tasks.sort(NameSort);
+                    break;
+                case "priority":
+                    tasks.sort(PrioritySort);
+                    break;
+                case "created":
+                    tasks.sort(CreatedSort);
+                    break;
+                default:
+                    break;
+            }
+            
             break;
         }
 
