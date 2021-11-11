@@ -121,6 +121,9 @@ function DisplayTasks() {
                 case "name":
                     tasks.sort(NameSort);
                     break;
+                case "priority":
+                    tasks.sort(PrioritySort);
+                    break;
 
                 // TODO: Other sort types.
 
@@ -160,7 +163,27 @@ function DueSort(a, b) {
 
 // Sorting function for sorting tasks by name.
 function NameSort(a, b) {
-    a = a.name.toLo
+    a = a.name.toLowerCase();
+    b = b.name.toLowerCase();
+    if (a < b) {return -1;}
+    if (a > b) {return 1;}
+    return 0;
+}
+
+// Sorting function for sorting tasks by priority.
+function PrioritySort(a, b) {
+    // Sort order: null id:4 id:3 id:2 id:1
+    if (a.priority == null) {
+        a = 5;
+    }else {
+        a = a.priority.id;
+    }
+    if (b.priority == null) {
+        b = 5;
+    }else {
+        b = b.priority.id;
+    }
+    return b - a;
 }
 
 // Creates and displays a neat error to the user.
