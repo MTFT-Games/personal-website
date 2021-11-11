@@ -124,9 +124,9 @@ function DisplayTasks() {
                 case "priority":
                     tasks.sort(PrioritySort);
                     break;
-
-                // TODO: Other sort types.
-
+                case "created":
+                    tasks.sort(CreatedSort);
+                    break;
                 default:
                     break;
             }
@@ -184,6 +184,11 @@ function PrioritySort(a, b) {
         b = b.priority.id;
     }
     return b - a;
+}
+
+// Sorting function for sorting tasks by creation date.
+function CreatedSort(a, b) {
+    return a.date_created - b.date_created;
 }
 
 // Creates and displays a neat error to the user.
