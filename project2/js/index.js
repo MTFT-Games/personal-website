@@ -100,10 +100,6 @@ function DisplayTasks() {
         tasks = loadedTasks;
     }
     
-    
-
-    // for due date sort by sort then filter for each date range
-
     // Sort and group tasks based on settings.
     let groups = [];
     switch (settings.group.value) {
@@ -243,40 +239,30 @@ function DisplayTasks() {
             });
             break;
         }
-        case "duedate":{
-            // Sort according to setting.
-            switch (settings.sort.value) {
-                case "duedate":
-                    tasks.sort(DueSort);
-                    break;
-                case "status":
-                    tasks.sort(StatusSort);
-                    break;
-                case "name":
-                    tasks.sort(NameSort);
-                    break;
-                case "priority":
-                    tasks.sort(PrioritySort);
-                    break;
-                case "created":
-                    tasks.sort(CreatedSort);
-                    break;
-                default:
-                    break;
-            }
-            
-            break;
-        }
-
-            // TODO: Sort and group for other groupings.
-
         default:
             break;
     }
     console.log(groups);
 
-
     // TODO: Make and display html of the sorted groups depending on view
+    if (settings.view.value == "board") {
+        let boardView = document.createElement('ol');
+        boardView.className = 'boardView';
+        for (let i = 0; i < groups.length; i++) {
+            let groupView = document.createElement('section');
+            groupView.className = 'group';
+            let groupHead = document.createElement('h3');
+            groupHead.className = 'groupHead';
+            groupHead.innerHTML = groups[i].name + '<span class="count">' + groups[i].tasks.length + '</span>';
+            // TODO: Dynamically style the group head with the group colors
+            //let taskContainer = document.createElement('ol');
+
+
+            groupView.appendChild(groupHead);
+            boardView.appendChild(groupView);
+        }
+        tasksSection.appendChild(boardView);
+    }
     
     // Add subtasks to their parent task if needed.
     if (settings.subtasks.value != "separate") {
