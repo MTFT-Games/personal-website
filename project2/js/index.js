@@ -88,6 +88,7 @@ function TasksLoaded(e) {
 
 // Formats tasks and displays them according to settings.
 function DisplayTasks() {
+    // DEBUG: console.log(loadedTasks);
     
     // Sort out subtasks for later formatting if necessary.
     let subtasks;
@@ -98,7 +99,6 @@ function DisplayTasks() {
     }else {
         tasks = loadedTasks;
     }
-    console.log(tasks);
     
     // for status sort by status and find biggest status index to know how many groups to filter out. then sort by sort, then filter
     // for priority sort by sort then filter into 5 priorities
@@ -106,14 +106,14 @@ function DisplayTasks() {
     // for due date sort by sort then filter for each date range
 
     // Sort and group tasks based on settings.
-    let groups;
+    let groups = [];
     switch (settings.group.value) {
         case "status":
             // Sort to find the biggest status index.
             tasks.sort(StatusSort);
             let numGroups = tasks[tasks.length - 1].status.orderindex;
 
-            // Sort according to setting
+            // Sort according to setting.
             switch (settings.sort.value) {
                 case "duedate":
                     tasks.sort(DueSort);
@@ -131,7 +131,17 @@ function DisplayTasks() {
                     break;
             }
 
-            // TODO: Filter into groups.
+            // Filter into groups.
+            for (let i = 0; i <= numGroups; i++) {
+                let groupTasks = tasks.filter(e => e.status.orderindex == i);
+                if (groupTasks.length > 0) {
+                    groups.push({
+                        name:groupTasks[0].status.status,
+                        color:groupTasks[0].status.color,
+                        tasks:groupTasks
+                    });
+                }
+            }
             break;
     
             // TODO: Sort and group for other groupings.
@@ -139,6 +149,8 @@ function DisplayTasks() {
         default:
             break;
     }
+    // DEBUG: console.log(groups);
+
 
     // TODO: Make and display html of the sorted groups depending on view
     
