@@ -44,6 +44,32 @@
     <main>
         <header id="controls">
             <!-- Search   view    sort    group    subtasks -->
+            <label for="view">View: </label>
+            <select name="view" id="view">
+                <option value="list">List</option>
+                <option value="board">Board</option>
+            </select>
+            <label for="subtasks">Subtasks: </label>
+            <select name="subtasks" id="subtasks">
+                <option value="collapse">Collapse</option>
+                <option value="expand">Expand</option>
+                <option value="separate">As separate tasks</option>
+            </select>
+            <label for="group">Group by: </label>
+            <select name="group" id="group">
+                <option value="status">Status</option>
+                <option value="priority">Priority</option>
+                <option value="tag">Tags</option>
+                <option value="duedate">Due Date</option>
+            </select>
+            <label for="sort">Sort by: </label>
+            <select name="sort" id="sort">
+                <option value="duedate">Due date</option>
+                <option value="status">Status</option>
+                <option value="name">Name</option>
+                <option value="priority">Priority</option>
+                <option value="crreated">Date created</option>
+            </select>
         </header>
         <nav id="hierarchy">
             <!-- Hierarchy like clickup starting with the workspaces hardcoded in html with the ids as data. Also button at the top to confirm and send request and usage tracker at bottom. -->
