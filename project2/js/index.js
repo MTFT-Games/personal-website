@@ -3,42 +3,61 @@ const personalKey = 'pk_3POMJ8BNYN8ZH0IXBEIUS1VJ9W8FZWXV';
 
 let tasksSection;
 let apiCounter;
+let settings;
 let currentRequest;
 let loadedTasks = [];
 
+// On page load, set references to various elements.
 window.onload = (e) => {
     tasksSection = document.querySelector('#tasks');
     apiCounter = document.querySelector('#apiremaining');
+    settings = {
+        view:document.querySelector('#view'),
+        subtasks:document.querySelector('#subtasks'),
+        group:document.querySelector('#group'),
+        sort:document.querySelector('#sort')
+    }
 }
 
-// Loads all tasks from the workspace the event source is in.
+// Configures and sends a request for all tasks from the workspace the event source is in.
 function GetWorkspaceTasks(target) {
-    tasksSection.innerHTML = '<img src="media/acurate-loading-bar.gif" alt="loading">';
+    // Show loading bar.
+    tasksSection.innerHTML = '<img class="loading" src="media/acurate-loading-bar.gif" alt="loading">';
+
+    // Configure request.
     currentRequest = {
         page:0,
         type:'workspaceTasks',
         id:target.parentNode.dataset.id
     }
+
+    // Clear stored tasks to make way for those requested.
     loadedTasks = [];
+
     Request();
 }
 
 
-// Sends request to url and calls the callback function when finished.
+// Sends a request according to the configured currentRequest.
 function Request() {
     let url;
     let callback;
+
+    // Determine request type and assemble url from currentRequest.
     switch (currentRequest.type) {
         case 'workspaceTasks':
             url = 'team/' + currentRequest.id + '/task?page=' + currentRequest.page + '&reverse=true&subtasks=true';
             callback = TasksLoaded;
             break;
     
+        // TODO: Other request types when needed.
+
         default:
+            // TODO: Error
             break;
     }
 
-
+    // Create and send request.
     let xhr = new XMLHttpRequest();
     xhr.onload = callback;
     xhr.open("GET", 'https://noahemke.com/cors-anywhere/api.clickup.com/api/v2/' + url);
@@ -46,106 +65,92 @@ function Request() {
     xhr.send();
 }
 
+// Callback for a request for tasks being ready. 
+// Handles the requested tasks and requests more if paged.
 function TasksLoaded(e) {
+    // Parse requested tasks.
     let tasks = JSON.parse(e.target.responseText)["tasks"];
     loadedTasks.push.apply(loadedTasks, tasks);
+
+    // Request the next page if the response was a full page.
     if (tasks.length == 100) {
         currentRequest.page++;
         Request();
-    }else {
+    }else { // Otherwise start displaying them.
         DisplayTasks();
     }
+
+    // Get and show remaining api limit.
     apiCounter.innerHTML = "API usage left this minute: " + e.target.getResponseHeader('x-ratelimit-remaining') + "/100";
 }
 
+// Formats tasks and displays them according to settings.
 function DisplayTasks() {
-    console.log(loadedTasks);
-    tasksSection.innerHTML = "";
-}
-/*       gif-finder below for reference to get started
-// 1
-window.onload = (e) => { document.querySelector("#search").onclick = searchButtonClicked };
+    
+    // Sort out subtasks for later formatting if necessary.
+    let subtasks;
+    let tasks;
+    if (settings.subtasks.value != "separate") {
+        subtasks = loadedTasks.filter(e => e.parent != null);
+        tasks = loadedTasks.filter(e => e.parent == null)
+    }else {
+        tasks = loadedTasks;
+    }
+    console.log(tasks);
+    
+    // for status sort by status and find biggest status index to know how many groups to filter out. then sort by sort, then filter
+    // for priority sort by sort then filter into 5 priorities
+    // for tag sort by sort then add each to its group 1 by 1 creating it if its not made
+    // for due date sort by sort then filter for each date range
 
-// 2
-let displayTerm = "";
+    // Sort and group tasks based on settings.
+    let groups;
+    switch (settings.group.value) {
+        case "status":
+            // Sort to find the biggest status index.
+            tasks.sort(StatusSort);
+            let numGroups = tasks[tasks.length - 1].status.orderindex;
 
-// 3
-function searchButtonClicked() {
-    console.log("searchButtonClicked() called");
+            // Sort according to setting
+            switch (settings.sort.value) {
+                case "duedate":
+                    tasks.sort(DueSort);
+                    break;
+                
+                // TODO: Other sort types.
 
-    // Set URL and API key.
-    const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?";
-    const GIPHY_KEY = "dc6zaTOxFJmzC";
-    let url = GIPHY_URL + "api_key=" + GIPHY_KEY;
+                default:
+                    break;
+            }
 
-    // Get and format the search term.
-    let term = document.querySelector("#searchterm").value.trim();
-    displayTerm = term;
-    term = encodeURIComponent(term);
-    if (term.length < 1) return;
+            // TODO: Filter into groups.
+            break;
+    
+            // TODO: Sort and group for other groupings.
 
-    // Get the limit and put it all in the url.
-    let limit = document.querySelector("#limit").value;
-    url += "&q=" + term + "&limit=" + limit;
-
-    // Update UI.
-    document.querySelector("#status").style.display = 'block';
-    console.log(url);
-
-    getData(url);
-}
-
-function getData(url) {
-    // Setup an XMLHTTPRequest.
-    let xhr = new XMLHttpRequest();
-    xhr.onload = dataLoaded;
-    xhr.onerror = dataError;
-
-    // Connect and send request.
-    xhr.open("GET", url);
-    xhr.send();
-}
-
-function dataLoaded(e) {
-    let xhr = e.target;
-    console.log(xhr.responseText);
-
-    // Parse response.
-    let obj = JSON.parse(xhr.responseText);
-
-    // Return early if no results found.
-    if (!obj.data || obj.data.length == 0) {
-        document.querySelector("#content").innerHTML = "<b>No results found for '" + displayTerm + "'</b>";
-        return;
+        default:
+            break;
     }
 
-    // Start interpreting results.
-    let results = obj.data;
-    console.log("results.length = " + results.length);
-    let bigString = "<p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
-
-    // Loop through and interpret result entries.
-    for (let i = 0; i < results.length; i++) {
-        let result = results[i];
-
-        // Get URLs to GIF.
-        let smallURL = result.images.fixed_width_downsampled.url;
-        if (!smallURL) smallURL = "images/no-image-found.png";
-        let url = result.url;
-
-        // Make a div for this result.
-        let line = `<div class='result'><img src='${smallURL}' title='${result.id}'/><span><a target='_blank' href='${url}'>View on Giphy</a></span>Rating: ${result.rating.toUpperCase()}</div>`;
-
-        // Add it to bigString.
-        bigString += line;
+    // TODO: Make and display html of the sorted groups depending on view
+    
+    // Add subtasks to their parent task if needed.
+    if (settings.subtasks.value != "separate") {
+        // TODO: add subtasks to their parent task
     }
 
-    // Add the results to the html.
-    document.querySelector("#content").innerHTML = bigString;
-    document.querySelector("#status").style.display = 'none';
+    // Remove loading bar once done.
+    tasksSection.querySelector('.loading').remove();
 }
 
-function dataError(e) {
-    console.log("An error occurred");
+// Sorting function for sorting tasks by status.
+function StatusSort(a, b) {
+    return a.status.orderindex - b.status.orderindex;
 }
-*/
+
+// Sorting function for sorting tasks by due date.
+function DueSort(a, b) {
+    return a.due_date - b.due_date;
+}
+
+// TODO: Error catching
