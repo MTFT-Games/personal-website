@@ -111,6 +111,7 @@ function DisplayTasks() {
     switch (settings.group.value) {
         case "status":{
             // Sort to find the biggest status index.
+            // TODO: This way of getting the groups is flawed and should work more like tags then order them by type then index
             tasks.sort(StatusSort);
             let numGroups = tasks[tasks.length - 1].status.orderindex;
 
@@ -271,6 +272,7 @@ function DisplayTasks() {
                 li.id = task.id;
                 // TODO: Turn loadedTasks into a dictionary so that when the task is clicked on we can just reference back to that task data to get the description and such instead of sending another request for it.
                 // TODO: Add onclick for opening more info, description etc when that method is made.
+                // TODO: add a status indicator
                 let breadCrumbs = document.createElement('span');
                 breadCrumbs.className = 'breadCrumbs';
                 // TODO: Change this to search the hierarchy for whatever is marked active and get the task source from that. Otherwise changing view settings after sending any other request will screw with this. Althernitavely i could only use the current request for getting tasks since thats probably the only thing that needs it to keep track between pages but then i would have to redo the request method.

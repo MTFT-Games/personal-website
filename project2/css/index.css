@@ -146,6 +146,37 @@ main {
     border-radius: 0.5em;
     background-color: mediumblue;
 }
+.groupTasks {
+    height: 74vh;
+    overflow-y: scroll;
+    list-style: none;
+    padding: 0;
+}
+.task {
+    background-color: rgb(105, 105, 105);
+    margin: 0.5em 0;
+    border-radius: 1em;
+    padding: 0.5em;
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "breadcrumbs breadcrumbs breadcrumbs"
+                         "name        name        assignee"
+                         "priority    dates       dates"
+                         "tags        tags        tags";
+}
+.task .breadCrumbs {
+    grid-area: breadcrumbs;
+    font-size: 0.7em;
+}
+.task .taskName {
+    grid-area: name;
+    margin: 0;
+}
+.task .assignee {
+    grid-area: assignee;
+    width: 20px;
+}
 
 /* 
 TODO: Style error popup. 
