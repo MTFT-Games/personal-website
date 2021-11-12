@@ -46,7 +46,7 @@ function Request() {
     // Determine request type and assemble url from currentRequest.
     switch (currentRequest.type) {
         case 'workspaceTasks':
-            url = 'team/' + currentRequest.id + '/task?page=' + currentRequest.page + '&reverse=true&subtasks=true';
+            url = 'team/' + currentRequest.id + '/task?page=' + currentRequest.page + '&reverse=true&subtasks=true&include_closed=true';
             callback = TasksLoaded;
             break;
     
@@ -254,7 +254,8 @@ function DisplayTasks() {
             let groupHead = document.createElement('h3');
             groupHead.className = 'groupHead';
             groupHead.innerHTML = groups[i].name + '<span class="count">' + groups[i].tasks.length + '</span>';
-            // TODO: Dynamically style the group head with the group colors
+            groupHead.style.borderTopColor = groups[i].color;
+            // TODO: fix the colors on tag based groups
             //let taskContainer = document.createElement('ol');
 
 

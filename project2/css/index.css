@@ -89,7 +89,7 @@ a {
 
 main {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: max-content 1fr;
     grid-template-rows: 2em 1fr;
 }
 #hierarchy {
@@ -97,7 +97,7 @@ main {
     background-color: dimgray;
     grid-column: 1 / span 1;
     grid-row: 1 / -1;
-    padding: 1em 2em;
+    padding: 1em;
 }
 #hierarchy ul {
     margin: 0;
@@ -116,8 +116,41 @@ main {
     bottom: 0.5em;
     left: 0.5em;
 }
+#tasks {
+    overflow: auto;
+    background-color: rgb(75, 75, 75);
+}
+.boardView {
+    /*scrollable, flex,  consistent size items, full height*/
+    display: flex;
+    margin: 0;
+    padding: 1em 1.5em 0;
+    height: 100%;
+    width: max-content;
+    box-sizing: border-box;
+}
+.group {
+    background-color: rgb(80, 80, 80);
+    width: 11em;
+    margin: 0 1em;
+}
+.groupHead {
+    margin-top: 0;
+    padding: 0.2em;
+    background-color: lightslategrey;
+    border-top: 5px solid grey;
+}
+.groupHead .count {
+    margin: 0 0.5em;
+    padding: 0.1em 0.2em;
+    border-radius: 0.5em;
+    background-color: mediumblue;
+}
 
-/* TODO: Style error popup. */
+/* 
+TODO: Style error popup. 
+TODO: Organize this css
+*/
 
 /* Responsive breakpoints */
 @media only screen and (max-width: 1320px) {
