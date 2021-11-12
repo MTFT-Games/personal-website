@@ -37,6 +37,14 @@ function GetWorkspaceTasks(target) {
     Request();
 }
 
+function GetSpaces(target) {
+    /* planning 
+    if value is unloaded add div for spaces and put loading then format request from parent for  workspace id and request with callback to new function that uses the request id to get back to the workspace div change button value, add results and remove loading
+    if loaded change to show and make div visible
+    if shown change to loaded and hide the div
+    */
+}
+
 
 // Sends a request according to the configured currentRequest.
 function Request() {
