@@ -88,6 +88,12 @@ function TasksLoaded(e) {
 
 // Formats tasks and displays them according to settings.
 function DisplayTasks() {
+    if (loadedTasks.length < 1) {
+        return;
+    }
+    // clear with loading bar.
+    tasksSection.innerHTML = '<img class="loading" src="media/acurate-loading-bar.gif" alt="loading">';
+
     // DEBUG: console.log(loadedTasks);
     
     // Sort out subtasks for later formatting if necessary.
@@ -264,6 +270,7 @@ function DisplayTasks() {
                 li.className = 'task';
                 li.id = task.id;
                 // TODO: Turn loadedTasks into a dictionary so that when the task is clicked on we can just reference back to that task data to get the description and such instead of sending another request for it.
+                // TODO: Add onclick for opening more info, description etc when that method is made.
                 let breadCrumbs = document.createElement('span');
                 breadCrumbs.className = 'breadCrumbs';
                 // TODO: Change this to search the hierarchy for whatever is marked active and get the task source from that. Otherwise changing view settings after sending any other request will screw with this. Althernitavely i could only use the current request for getting tasks since thats probably the only thing that needs it to keep track between pages but then i would have to redo the request method.
@@ -295,6 +302,7 @@ function DisplayTasks() {
                     assignee.className = 'assignee';
                     li.appendChild(assignee);
                 }
+                // TODO: Add priority and dates and tags
 
                 groupTasks.appendChild(li);
             }

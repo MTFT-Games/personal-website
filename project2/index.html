@@ -46,24 +46,24 @@
             <!-- Search  subtasks -->
             <!-- Add checkbox to show closed? and reverse sort and show empty groups-->
             <label for="view">View: </label>
-            <select name="view" id="view">
+            <select name="view" id="view" onchange="DisplayTasks()">
                 <option value="list">List</option>
                 <option value="board">Board</option>
             </select>
             <label for="subtasks">Subtasks: </label>
-            <select name="subtasks" id="subtasks">
+            <select name="subtasks" id="subtasks" onchange="DisplayTasks()">
                 <option value="collapse">Collapse</option>
                 <option value="expand">Expand</option>
                 <option value="separate">As separate tasks</option>
             </select>
             <label for="group">Group by: </label>
-            <select name="group" id="group">
+            <select name="group" id="group" onchange="DisplayTasks()">
                 <option value="status">Status</option>
                 <option value="priority">Priority</option>
                 <option value="tag">Tags</option>
             </select>
             <label for="sort">Sort by: </label>
-            <select name="sort" id="sort">
+            <select name="sort" id="sort" onchange="DisplayTasks()">
                 <option value="duedate">Due date</option>
                 <option value="status">Status</option>
                 <option value="name">Name</option>
