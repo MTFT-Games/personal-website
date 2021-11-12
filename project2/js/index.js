@@ -256,10 +256,43 @@ function DisplayTasks() {
             groupHead.innerHTML = groups[i].name + '<span class="count">' + groups[i].tasks.length + '</span>';
             groupHead.style.borderTopColor = groups[i].color;
             // TODO: fix the colors on tag based groups
-            //let taskContainer = document.createElement('ol');
-
-
             groupView.appendChild(groupHead);
+            let groupTasks = document.createElement('ol');
+            groupTasks.className = 'groupTasks';
+            for (const task of groups[i].tasks) {
+                let li = document.createElement('li');
+                li.className = 'task';
+                li.id = task.id;
+                // TODO: Turn loadedTasks into a dictionary so that when the task is clicked on we can just reference back to that task data to get the description and such instead of sending another request for it.
+                let breadCrumbs = document.createElement('span');
+                breadCrumbs.className = 'breadCrumbs';
+                // TODO: Change this to search the hierarchy for whatever is marked active and get the task source from that. Otherwise changing view settings after sending any other request will screw with this. Althernitavely i could only use the current request for getting tasks since thats probably the only thing that needs it to keep track between pages but then i would have to redo the request method.
+                switch (currentRequest.type) {
+                    case 'workspaceTasks':
+                        // TODO: Add breadcrumb for the space it came from after i add an automatic request to get and populate the spaces of a workspace before getting all the tasks for it. because tasks for some reason come with the name of the folder and list they come from but only the id of the space.
+                        // Intentionaly fall through
+                    case 'spaceTasks':
+                        if (task.folder.name != 'hidden') {
+                            breadCrumbs.innerHTML += ' > ' + task.folder.name;
+                        }
+                        // Intentionally fall through
+                    case 'folderTasks':
+                        breadCrumbs.innerHTML += ' > ' + task.list.name;
+                        break;
+                    default:
+                        break;
+                }
+                li.appendChild(breadCrumbs);
+                let taskName = document.createElement('h4');
+                taskName.className = 'taskName';
+                taskName.innerHTML = task.name;
+                li.appendChild(taskName);
+                
+
+                groupTasks.appendChild(li);
+            }
+            groupView.appendChild(groupTasks);
+
             boardView.appendChild(groupView);
         }
         tasksSection.appendChild(boardView);
