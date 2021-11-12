@@ -287,7 +287,14 @@ function DisplayTasks() {
                 taskName.className = 'taskName';
                 taskName.innerHTML = task.name;
                 li.appendChild(taskName);
-                
+                if (task.assignees.length > 0) {
+                    // TODO: Handle multiple assignees and no assignee
+                    let assignee = document.createElement('img');
+                    assignee.src = task.assignees[0].profilePicture;
+                    assignee.alt = task.assignees[0].username;
+                    assignee.className = 'assignee';
+                    li.appendChild(assignee);
+                }
 
                 groupTasks.appendChild(li);
             }
