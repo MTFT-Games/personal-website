@@ -57,7 +57,7 @@ function GetWorkspaceTasks(target) {
  * 
  * If the target buttons value is loaded or shown, the visibility of the 
  * related dropdown is toggled. Otherwise, in the case that it is not 
- * already loaded, a div is created for the dropdown, filled with a 
+ * already loaded, a ul is created for the dropdown, filled with a 
  * loading symbol, and a request is prepared and sent for all spaces in the 
  * targets workspace.
  * 
@@ -68,6 +68,32 @@ function DropdownSpaces(target) {
 	let errorMsg = "DropdownSpaces not implemented yet.";
 	console.warn(errorMsg);
 	ErrorPopup(errorMsg);
+
+	switch (target.value) {
+		case 'unloaded':
+			// Make the list and put a loading symbol in it.
+			let spacesList = document.createElement('ul');
+			spacesList.className = 'spacesList';
+			spacesList.innerHTML = '<li class="loading"><img ' +
+			'src="media/acurate-loading-bar.gif" alt="loading"></li>';
+			target.parentNode.appendChild(spacesList);
+
+			// Prepare request for the spaces.
+			currentRequest = {
+				type: 'spaces',
+				id: target.parentNode.dataset.id
+			}
+			Request();
+			break;
+
+		// TODO: Simple toggle of visibility in other cases.
+	
+		default:
+			let errorMsg = "Dropdown button state invalid.";
+			console.warn(errorMsg);
+			ErrorPopup(errorMsg);
+			break;
+	}
 }
 
 // TODO: Complete the rest of the hierarchy buttons.
@@ -99,7 +125,8 @@ function Request() {
 	// Create and send request.
 	let xhr = new XMLHttpRequest();
 	xhr.onload = callback;
-	xhr.open("GET", 'https://noahemke.com/cors-anywhere/api.clickup.com/api/v2/' + url);
+	xhr.open("GET", 'https://noahemke.com/cors-anywhere/api.clickup.com/api/v2/' + 
+		url);
 	xhr.setRequestHeader('Authorization', personalKey);
 	xhr.send();
 }
@@ -408,6 +435,7 @@ function DisplayTasks() {
 	tasksSection.querySelector('.loading').remove();
 }
 
+// #region Sorting functions.
 /**
  * Sorting function for sorting tasks by status.
  * 
@@ -484,6 +512,7 @@ function PrioritySort(a, b) {
 function CreatedSort(a, b) {
 	return a.date_created - b.date_created;
 }
+// #endregion
 
 // #region Error handling.
 /**
