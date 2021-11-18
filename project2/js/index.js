@@ -52,6 +52,9 @@ function GetWorkspaceTasks(target) {
 	Request();
 }
 
+// TODO: GetSpaceTasks(this).
+
+// TODO: Rename to DropdownWorkspace.
 /**
  * Toggles the dropdown of spaces within a workspace.
  * 
@@ -95,6 +98,8 @@ function DropdownSpaces(target) {
 			break;
 	}
 }
+
+// TODO: DropdownSpace(target).
 
 // TODO: Complete the rest of the hierarchy buttons.
 
@@ -161,10 +166,47 @@ function TasksLoaded(e) {
 	}
 
 	// Get and show remaining api limit.
-	apiCounter.innerHTML = "API usage left this minute: " + e.target.getResponseHeader('x-ratelimit-remaining') + "/100";
+	apiCounter.innerHTML = "API usage left this minute: " + 
+	e.target.getResponseHeader('x-ratelimit-remaining') + "/100";
 }
 
-// TODO: SpacesLoaded(e)
+/**
+ * Callback for a request ready with spaces.
+ * 
+ * Formats and displays the spaces in the response. Also updates the display 
+ * of the API limit.
+ * 
+ * @param {*} e The triggering event.
+ */
+function SpacesLoaded(e) {
+	// Get the spaces and the list to put them in.
+	let spacesList = document.querySelector('.workspace[data-id="' + 
+		currentRequest.id + '"] > .spacesList');
+	let spaces = JSON.parse(e.target.responseText)["spaces"];
+
+	// Make the html for each space.
+	for (const space of spaces) {
+		let spaceLi = document.createElement('li');
+		spaceLi.className = 'space dropdown';
+		spaceLi.dataset.id = space.id;
+		spaceLi.innerHTML = '<button type="button" class="droparrow" ' +
+			'value="unloaded" onclick="DropdownSpace(this)">' +
+			'<img src="media/drop-arrow.svg" alt=""></button>' +
+			'<button type="button" class="taskshow" ' +
+			'onclick="GetSpaceTasks(this)">' + space.name + '</button>';
+		spacesList.appendChild(spaceLi);
+	}
+
+	// Remove loading bar and update button value.
+	spacesList.querySelector('.loading').remove();
+	document.querySelector('.workspace[data-id="' + currentRequest.id + 
+		'"] > .droparrow').value = 'shown';
+
+	// TODO: Should make this a function since it is repeated in other spots.
+	// Get and show remaining api limit.
+	apiCounter.innerHTML = "API usage left this minute: " + 
+	e.target.getResponseHeader('x-ratelimit-remaining') + "/100";
+}
 
 /**
  * Sorts, groups, formats, and displays the loaded tasks according to selected 
