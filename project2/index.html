@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Window into my work</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/index.css">
-    <script src="js/index.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Window into my work</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/index.js"></script>
 </head>
+
 <body>
-    <header>
-		<span class="nav-logo"> 
-            <a href="/235/">
-			    <img src="media/profile-pic-white.png" alt="profile picture">
-			    <h1>Noah Emke</h1>
-            </a>
-            <h1 class="tagline">&nbsp;- window into my work</h1>
-        </span>
-		<label for="mobile-nav-btn" id="mobile-nav-lbl"><img src="media/Hamburger_icon.svg" alt="nev menu"></label>
+	<header>
+		<span class="nav-logo">
+			<a href="/235/">
+				<img src="media/profile-pic-white.png" alt="profile picture">
+				<h1>Noah Emke</h1>
+			</a>
+			<h1 class="tagline">&nbsp;- window into my work</h1>
+		</span>
+		<label for="mobile-nav-btn" id="mobile-nav-lbl">
+			<img src="media/Hamburger_icon.svg" alt="nev menu">
+		</label>
 		<input type="checkbox" name="nav-expand" id="mobile-nav-btn">
 		<nav class="nav-bar">
 			<a class="nav-link" href="/235/">Home</a>
 			<div class="nav-dropdown">
-				<span class="nav-link">Projects<img src="media/keyboard-arrow-down_2.svg" alt=""></span>
+				<span class="nav-link">
+					Projects<img src="media/keyboard-arrow-down_2.svg" alt="">
+				</span>
 				<ul>
 					<li><a href="/235/project1/">Project 1</a></li>
 					<li><a href="Index.html"><em>Project 2</em></a></li>
@@ -31,72 +37,85 @@
 				</ul>
 			</div>
 			<div class="nav-dropdown">
-				<span class="nav-link">Links<img src="media/keyboard-arrow-down_2.svg" alt=""></span>
+				<span class="nav-link">
+					Links<img src="media/keyboard-arrow-down_2.svg" alt="">
+				</span>
 				<ul>
 					<li><a href="https://github.com/MTFT-Games">Github</a></li>
-					<li><a href="https://www.linkedin.com/in/noah-emke/">LinkedIn</a></li>
-					<li><a href="mailto:noahremke@gmail.com" title="noahremke@gmail.com">Email</a></li>
+					<li>
+						<a href="https://www.linkedin.com/in/noah-emke/">
+							LinkedIn
+						</a>
+					</li>
+					<li>
+						<a href="mailto:noahremke@gmail.com" title="noahremke@gmail.com">
+							Email
+						</a>
+					</li>
 					<li><a href="documentation/notes.html">Documentation</a></li>
 				</ul>
 			</div>
 		</nav>
 	</header>
-    <main>
-        <header id="controls">
-            <!-- Search  subtasks -->
-            <!-- Add checkbox to show closed? and reverse sort and show empty groups-->
-            <label for="view">View: </label>
-            <select name="view" id="view" onchange="DisplayTasks()">
-                <option value="list">List</option>
-                <option value="board">Board</option>
-            </select>
-            <label for="subtasks">Subtasks: </label>
-            <select name="subtasks" id="subtasks" onchange="DisplayTasks()">
-                <option value="collapse">Collapse</option>
-                <option value="expand">Expand</option>
-                <option value="separate">As separate tasks</option>
-            </select>
-            <label for="group">Group by: </label>
-            <select name="group" id="group" onchange="DisplayTasks()">
-                <option value="status">Status</option>
-                <option value="priority">Priority</option>
-                <option value="tag">Tags</option>
-            </select>
-            <label for="sort">Sort by: </label>
-            <select name="sort" id="sort" onchange="DisplayTasks()">
-                <option value="duedate">Due date</option>
-                <option value="status">Status</option>
-                <option value="name">Name</option>
-                <option value="priority">Priority</option>
-                <option value="created">Date created</option>
-            </select>
-        </header>
-        <nav id="hierarchy">
-            <!-- Hierarchy like clickup starting with the workspaces hardcoded in html with the ids as data. Also button at the top to confirm and send request and usage tracker at bottom. -->
-            <ul>
-                <!-- TODO: Change these div to li. -->
-                <div class="dropdown workspace" data-id="10616563">
-                    <button type="button" class="droparrow" value="unloaded" 
-                        onclick="DropdownSpaces(this)">
-                        <img src="media/drop-arrow.svg" alt="">
-                    </button>
-                    <button type="button" class="taskshow" 
-                        onclick="GetWorkspaceTasks(this)">School</button>
-                </div>
-                <div class="dropdown workspace" data-id="10616570">
-                    <button type="button" class="droparrow" value="unloaded" 
-                        onclick="DropdownSpaces(this)">
-                        <img src="media/drop-arrow.svg" alt="">
-                    </button>
-                    <button type="button" class="taskshow" 
-                        onclick="GetWorkspaceTasks(this)">Personal</button>
-                </div>
-            </ul>
-            <strong id="apiremaining">API usage left this minute: </strong>
-        </nav>
-        <section id="tasks">
-            <!-- To be filled by js. Maybe put instructions to start with. -->
-        </section>
-    </main>
+	<main>
+		<header id="controls">
+			<!-- Search  subtasks -->
+			<!-- Add checkbox to show closed? and reverse sort and show empty 
+				groups -->
+			<label for="view">View: </label>
+			<select name="view" id="view" onchange="DisplayTasks()">
+				<option value="list">List</option>
+				<option value="board">Board</option>
+			</select>
+			<label for="subtasks">Subtasks: </label>
+			<select name="subtasks" id="subtasks" onchange="DisplayTasks()">
+				<option value="collapse">Collapse</option>
+				<option value="expand">Expand</option>
+				<option value="separate">As separate tasks</option>
+			</select>
+			<label for="group">Group by: </label>
+			<select name="group" id="group" onchange="DisplayTasks()">
+				<option value="status">Status</option>
+				<option value="priority">Priority</option>
+				<option value="tag">Tags</option>
+			</select>
+			<label for="sort">Sort by: </label>
+			<select name="sort" id="sort" onchange="DisplayTasks()">
+				<option value="duedate">Due date</option>
+				<option value="status">Status</option>
+				<option value="name">Name</option>
+				<option value="priority">Priority</option>
+				<option value="created">Date created</option>
+			</select>
+		</header>
+		<nav id="hierarchy">
+			<!-- Hierarchy like clickup starting with the workspaces hardcoded 
+				in html with the ids as data. Also button at the top to confirm 
+				and send request and usage tracker at bottom. -->
+			<ul>
+				<li class="dropdown workspace" data-id="10616563">
+					<button type="button" class="droparrow" value="unloaded" 
+						onclick="DropdownWorkspace(this)">
+						<img src="media/drop-arrow.svg" alt="">
+					</button>
+					<button type="button" class="taskshow" 
+						onclick="GetWorkspaceTasks(this)">School</button>
+				</li>
+				<li class="dropdown workspace" data-id="10616570">
+					<button type="button" class="droparrow" value="unloaded" 
+						onclick="DropdownWorkspace(this)">
+						<img src="media/drop-arrow.svg" alt="">
+					</button>
+					<button type="button" class="taskshow" 
+						onclick="GetWorkspaceTasks(this)">Personal</button>
+				</li>
+			</ul>
+			<strong id="apiremaining">API usage left this minute: </strong>
+		</nav>
+		<section id="tasks">
+			<!-- To be filled by js. Maybe put instructions to start with. -->
+		</section>
+	</main>
 </body>
+
 </html>

@@ -54,7 +54,6 @@ function GetWorkspaceTasks(target) {
 
 // TODO: GetSpaceTasks(this).
 
-// TODO: Rename to DropdownWorkspace.
 /**
  * Toggles the dropdown of spaces within a workspace.
  * 
@@ -66,7 +65,7 @@ function GetWorkspaceTasks(target) {
  * 
  * @param {*} target The element that triggered the event.
  */
-function DropdownSpaces(target) {
+function DropdownWorkspace(target) {
 	switch (target.value) {
 		case 'unloaded':
 			// Make the list and put a loading symbol in it.
