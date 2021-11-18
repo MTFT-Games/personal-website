@@ -108,8 +108,15 @@ function Request() {
 	// Determine request type and assemble url from currentRequest.
 	switch (currentRequest.type) {
 		case 'workspaceTasks':
-			url = 'team/' + currentRequest.id + '/task?page=' + currentRequest.page + '&reverse=true&subtasks=true&include_closed=true';
+			url = 'team/' + currentRequest.id + '/task?page=' + 
+				currentRequest.page + 
+				'&reverse=true&subtasks=true&include_closed=true';
 			callback = TasksLoaded;
+			break;
+
+		case 'spaces':
+			url = 'team/' + currentRequest.id + '/space';
+			callback = SpacesLoaded;
 			break;
 
 		// TODO: Other request types when needed.
@@ -156,6 +163,8 @@ function TasksLoaded(e) {
 	// Get and show remaining api limit.
 	apiCounter.innerHTML = "API usage left this minute: " + e.target.getResponseHeader('x-ratelimit-remaining') + "/100";
 }
+
+// TODO: SpacesLoaded(e)
 
 /**
  * Sorts, groups, formats, and displays the loaded tasks according to selected 
