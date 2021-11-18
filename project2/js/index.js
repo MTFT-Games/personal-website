@@ -495,7 +495,15 @@ function DisplayTasks() {
 					li.appendChild(priorityImg);
 				}
 
-				// TODO: Add dates and tags etc.
+				// Add due date.
+				if (task.due_date != null) {
+					let dueDate = document.createElement('span');
+					dueDate.className = 'taskDate';
+					dueDate.innerHTML = new Date(parseInt(task.due_date)).toDateString();
+					li.appendChild(dueDate);
+				}
+
+				// TODO: Add tags etc.
 
 				groupTasks.appendChild(li);
 			}
