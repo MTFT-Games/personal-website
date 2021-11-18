@@ -466,7 +466,36 @@ function DisplayTasks() {
 					assignee.className = 'assignee';
 					li.appendChild(assignee);
 				}
-				// TODO: Add priority and dates and tags etc.
+
+				// Add Priority flag.
+				if (task.priority != null) {
+					let priorityImg = document.createElement('img');
+					priorityImg.className = 'taskPriority';
+					switch (task.priority.id) {
+						case '4':
+							priorityImg.src = 'media/Antu_flag.svg';
+							priorityImg.alt = 'low priority';
+							break;
+						case '3':
+							priorityImg.src = 'media/Antu_flag-blue.svg';
+							priorityImg.alt = 'normal priority';
+							break;
+						case '2':
+							priorityImg.src = 'media/Antu_flag-yellow.svg';
+							priorityImg.alt = 'high priority';
+							break;
+						case '1':
+							priorityImg.src = 'media/Antu_flag-red.svg';
+							priorityImg.alt = 'urgent priority';
+							break;
+					
+						default:
+							break;
+					}
+					li.appendChild(priorityImg);
+				}
+
+				// TODO: Add dates and tags etc.
 
 				groupTasks.appendChild(li);
 			}
@@ -603,3 +632,6 @@ function DismissMsg(e) {
 	e.target.parentNode.remove();
 }
 // #endregion
+
+// TODO: Show current view.
+// TODO: Use local storage for settings and task view.

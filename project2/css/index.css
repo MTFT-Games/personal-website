@@ -184,6 +184,10 @@ main {
     grid-area: assignee;
     width: 20px;
 }
+.task .taskPriority {
+    grid-area: priority;
+    width: 20px;
+}
 #controls {
     display: flex;
     align-items: center;
