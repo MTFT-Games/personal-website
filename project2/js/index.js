@@ -67,11 +67,6 @@ function GetWorkspaceTasks(target) {
  * @param {*} target The element that triggered the event.
  */
 function DropdownSpaces(target) {
-	// TODO: Complete this function as described.
-	let errorMsg = "DropdownSpaces not implemented yet.";
-	console.warn(errorMsg);
-	ErrorPopup(errorMsg);
-
 	switch (target.value) {
 		case 'unloaded':
 			// Make the list and put a loading symbol in it.
@@ -89,7 +84,15 @@ function DropdownSpaces(target) {
 			Request();
 			break;
 
-		// TODO: Simple toggle of visibility in other cases.
+		case 'shown':
+			target.value = 'loaded';
+			target.parentNode.querySelector('.spacesList').style.display = 'none';
+			break;
+
+		case 'loaded':
+			target.value = 'shown';
+			target.parentNode.querySelector('.spacesList').style.display = 'block';
+			break;
 	
 		default:
 			let errorMsg = "Dropdown button state invalid.";
