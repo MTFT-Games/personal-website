@@ -97,16 +97,23 @@ main {
     background-color: dimgray;
     grid-column: 1 / span 1;
     grid-row: 1 / -1;
-    padding: 1em;
+    padding: 1em 0.3em;
+}
+#hierarchy .spacesList {
+    border-left: 1px solid white;
+    margin: 0.1em 0 0.5em 0.5em;
 }
 #hierarchy ul {
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 .droparrow {
     padding: 0;
     margin: 0;
-    height: 1.5em;
+    height: 1em;
+    background-color: transparent;
+    border: none;
 }
 .droparrow img {
     height: 100%
@@ -176,6 +183,14 @@ main {
 .task .assignee {
     grid-area: assignee;
     width: 20px;
+}
+#controls {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+#controls select {
+    margin-right: 1em;
 }
 
 /* 
