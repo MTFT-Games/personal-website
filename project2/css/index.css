@@ -199,6 +199,11 @@ main {
 #controls select {
     margin-right: 1em;
 }
+#instructions {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+}
 
 /* 
 TODO: Style error popup. 
