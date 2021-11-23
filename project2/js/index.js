@@ -10,6 +10,7 @@ let settings;
 let currentRequest;
 let loadedTasks = [];
 let prefix = "nre5152-";
+let waiting = false;
 // #endregion
 
 /**
@@ -45,6 +46,7 @@ window.onload = () => {
 		tasksSection.innerHTML = '<img class="loading" ' +
 			'src="media/acurate-loading-bar.gif" alt="loading">';
 
+		waiting = true;
 		Request();
 	}
 }
@@ -59,6 +61,17 @@ window.onload = () => {
  * @param {*} target The element that triggered the event.
  */
 function GetWorkspaceTasks(target) {
+	if (waiting) {
+		let errorMsg = "Cannot start request while still waiting on a previous " +
+			"multi step request. Please wait until the current request is done " +
+			"loading then try again.";
+		console.warn(errorMsg);
+		ErrorPopup(errorMsg);
+		return;
+	}else {
+		waiting = true;
+	}
+
 	// Show loading bar.
 	tasksSection.innerHTML = '<img class="loading" ' +
 		'src="media/acurate-loading-bar.gif" alt="loading">';
@@ -86,6 +99,17 @@ function GetWorkspaceTasks(target) {
  * @param {*} target The element that triggered the event.
  */
 function GetSpaceTasks(target) {
+	if (waiting) {
+		let errorMsg = "Cannot start request while still waiting on a previous " +
+			"multi step request. Please wait until the current request is done " +
+			"loading then try again.";
+		console.warn(errorMsg);
+		ErrorPopup(errorMsg);
+		return;
+	}else {
+		waiting = true;
+	}
+
 	// Show loading bar.
 	tasksSection.innerHTML = '<img class="loading" ' +
 		'src="media/acurate-loading-bar.gif" alt="loading">';
@@ -116,6 +140,17 @@ function GetSpaceTasks(target) {
  * @param {*} target The element that triggered the event.
  */
 function GetFolderTasks(target) {
+	if (waiting) {
+		let errorMsg = "Cannot start request while still waiting on a previous " +
+			"multi step request. Please wait until the current request is done " +
+			"loading then try again.";
+		console.warn(errorMsg);
+		ErrorPopup(errorMsg);
+		return;
+	}else {
+		waiting = true;
+	}
+
 	// Show loading bar.
 	tasksSection.innerHTML = '<img class="loading" ' +
 		'src="media/acurate-loading-bar.gif" alt="loading">';
@@ -146,6 +181,17 @@ function GetFolderTasks(target) {
  * @param {*} target The element that triggered the event.
  */
 function GetListTasks(target) {
+	if (waiting) {
+		let errorMsg = "Cannot start request while still waiting on a previous " +
+			"multi step request. Please wait until the current request is done " +
+			"loading then try again.";
+		console.warn(errorMsg);
+		ErrorPopup(errorMsg);
+		return;
+	}else {
+		waiting = true;
+	}
+
 	// Show loading bar.
 	tasksSection.innerHTML = '<img class="loading" ' +
 		'src="media/acurate-loading-bar.gif" alt="loading">';
@@ -177,6 +223,17 @@ function GetListTasks(target) {
 function DropdownWorkspace(target) {
 	switch (target.value) {
 		case 'unloaded':
+			if (waiting) {
+				let errorMsg = "Cannot start request while still waiting on a " +
+					"previous multi step request. Please wait until the current " +
+					"request is done loading then try again.";
+				console.warn(errorMsg);
+				ErrorPopup(errorMsg);
+				return;
+			}else {
+				waiting = true;
+			}
+
 			// Make the list and put a loading symbol in it.
 			let spacesList = document.createElement('ul');
 			spacesList.className = 'spacesList';
@@ -224,6 +281,17 @@ function DropdownWorkspace(target) {
 function DropdownSpace(target) {
 	switch (target.value) {
 		case 'unloaded':
+			if (waiting) {
+				let errorMsg = "Cannot start request while still waiting on a " +
+					"previous multi step request. Please wait until the current " +
+					"request is done loading then try again.";
+				console.warn(errorMsg);
+				ErrorPopup(errorMsg);
+				return;
+			}else {
+				waiting = true;
+			}
+
 			// Make the list and put a loading symbol in it.
 			let foldersList = document.createElement('ul');
 			foldersList.className = 'foldersList';
@@ -336,14 +404,12 @@ function Request() {
 			callback = HiddenFolderLoaded;
 			break;
 
-		// TODO: Other request types when needed.
-
 		default:
 			let errorMsg = "Invalid request type " + currentRequest.type + 
 				" encountered.";
 			console.error(errorMsg);
 			ErrorPopup(errorMsg);
-			break;
+			return;
 	}
 
 	// Create and send request.
@@ -415,6 +481,7 @@ function SpacesLoaded(e) {
 	spacesList.querySelector('.loading').remove();
 	document.querySelector('.workspace[data-id="' + currentRequest.id + 
 		'"] > .droparrow').value = 'shown';
+	waiting = false;
 
 	// TODO: Should make this a function since it is repeated in other spots.
 	// Get and show remaining api limit.
@@ -502,6 +569,7 @@ function HiddenFolderLoaded(e) {
 	foldersList.querySelector('.loading').remove();
 	document.querySelector('.space[data-id="' + currentRequest.id + 
 		'"] > .droparrow').value = 'shown';
+	waiting = false;
 
 	// TODO: Should make this a function since it is repeated in other spots.
 	// Get and show remaining api limit.
@@ -818,13 +886,17 @@ function DisplayTasks() {
 		}
 		tasksSection.appendChild(boardView);
 	} else {
+		ErrorPopup("The list view setting is not implemented yet.");
 		// TODO: Make list view.
 	}
 
 	// Add subtasks to their parent task if needed.
 	if (settings.subtasks.value != "separate") {
+		ErrorPopup("Subtask settings other than separate are not implemented yet.");
 		// TODO: Add subtasks to their parent task.
 	}
+
+	waiting = false;
 
 	// Remove loading bar once done.
 	tasksSection.querySelector('.loading').remove();
@@ -920,10 +992,7 @@ function ErrorPopup(msg) {
 	popup.className = "errorpopup";
 	let common = document.createElement('h1');
 	// Boilerplate error text.
-	common.innerHTML = "An error has ocurred in this apps javascript. You may " +
-	"need to refresh the page for a clean start or you can dismiss this " +
-	"message and see if the app recovers. If this is a repeating issue, " +
-	"please report the issue with the following error to noahremke@gmail.com.";
+	common.innerHTML = "An error has ocurred in this apps javascript:";
 	popup.appendChild(common);
 	let errorTxt = document.createElement('p');
 	errorTxt.innerHTML = msg;

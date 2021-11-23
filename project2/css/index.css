@@ -207,6 +207,14 @@ main {
     text-align: center;
     margin: auto;
 }
+.errorpopup {
+    position: fixed;
+    background-color: dimgray;
+    width: 50vw;
+    left: 25vw;
+    bottom: 0;
+    padding: 1em;
+}
 
 /* 
 TODO: Style error popup. 
