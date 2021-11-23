@@ -112,7 +112,32 @@ function GetFolderTasks(target) {
 	Request();
 }
 
-// TODO: GetListTasks(target)
+/**
+ * Prepares a request for all tasks in the list of the event source.
+ * 
+ * Clears the task section with a loading bar, configures a request for all 
+ * tasks in the list of the target element starting at page 0, clears 
+ * loaded tasks, and then calls Request().
+ * 
+ * @param {*} target The element that triggered the event.
+ */
+function GetListTasks(target) {
+	// Show loading bar.
+	tasksSection.innerHTML = '<img class="loading" ' +
+		'src="media/acurate-loading-bar.gif" alt="loading">';
+
+	// Configure request.
+	currentRequest = {
+		page: 0,
+		type: 'listTasks',
+		id: target.parentNode.dataset.id,
+	}
+
+	// Clear stored tasks to make way for those requested.
+	loadedTasks = [];
+
+	Request();
+}
 
 /**
  * Toggles the dropdown of spaces within a workspace.
@@ -262,6 +287,13 @@ function Request() {
 				currentRequest.page + '&reverse=true&subtasks=true&' +
 				'project_ids%5B%5D=' + currentRequest.folderId + 
 				'&include_closed=true';
+			callback = TasksLoaded;
+			break;
+
+		case 'listTasks':
+			url = 'list/' + currentRequest.id + '/task?page=' + 
+				currentRequest.page + 
+				'&reverse=true&subtasks=true&include_closed=true';
 			callback = TasksLoaded;
 			break;
 
