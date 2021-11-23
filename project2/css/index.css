@@ -87,11 +87,13 @@ a {
     height: 2.5em; 
 }
 
+/* Main content */
 main {
     display: grid;
     grid-template-columns: max-content 1fr;
     grid-template-rows: 2em 1fr;
 }
+/* Hierarchy panel */
 #hierarchy {
     position: relative;
     background-color: dimgray;
@@ -126,6 +128,7 @@ main {
     bottom: 0.5em;
     left: 0.5em;
 }
+/* Tasks view */
 #tasks {
     overflow: auto;
     background-color: rgb(75, 75, 75);
@@ -207,6 +210,8 @@ main {
     text-align: center;
     margin: auto;
 }
+
+
 .errorpopup {
     position: fixed;
     background-color: dimgray;
@@ -217,9 +222,8 @@ main {
 }
 
 /* 
-TODO: Style error popup. 
-TODO: Organize this css.
-TODO: Comment this CSS.
+TODO: Organize this css more.
+TODO: Comment this CSS more.
 TODO: Improve responsiveness.
 TODO: Improve scrollbar.
 */
