@@ -99,9 +99,12 @@ main {
     grid-row: 1 / -1;
     padding: 1em 0.3em;
 }
-#hierarchy .spacesList {
+#hierarchy ul ul {
     border-left: 1px solid white;
     margin: 0.1em 0 0.5em 0.5em;
+}
+#hierarchy .list {
+    margin-left: 1em;
 }
 #hierarchy ul {
     margin: 0;

@@ -82,6 +82,9 @@ function GetSpaceTasks(target) {
 	Request();
 }
 
+// TODO: GetFolderTasks(target)
+// TODO: GetListTasks(target)
+
 /**
  * Toggles the dropdown of spaces within a workspace.
  * 
@@ -129,7 +132,52 @@ function DropdownWorkspace(target) {
 	}
 }
 
-// TODO: DropdownSpace(target).
+/**
+ * Toggles the dropdown of folders within a space.
+ * 
+ * If the target buttons value is loaded or shown, the visibility of the 
+ * related dropdown is toggled. Otherwise, in the case that it is not 
+ * already loaded, a ul is created for the dropdown, filled with a 
+ * loading symbol, and a request is prepared and sent for all folders in the 
+ * targets space.
+ * 
+ * @param {*} target The element that triggered the event.
+ */
+function DropdownSpace(target) {
+	switch (target.value) {
+		case 'unloaded':
+			// Make the list and put a loading symbol in it.
+			let foldersList = document.createElement('ul');
+			foldersList.className = 'foldersList';
+			foldersList.innerHTML = '<li class="loading"><img ' +
+			'src="media/acurate-loading-bar.gif" alt="loading"></li>';
+			target.parentNode.appendChild(foldersList);
+
+			// Prepare request for the folders.
+			currentRequest = {
+				type: 'folders',
+				id: target.parentNode.dataset.id
+			}
+			Request();
+			break;
+
+		case 'shown':
+			target.value = 'loaded';
+			target.parentNode.querySelector('.foldersList').style.display = 'none';
+			break;
+
+		case 'loaded':
+			target.value = 'shown';
+			target.parentNode.querySelector('.foldersList').style.display = 'block';
+			break;
+	
+		default:
+			let errorMsg = "Dropdown button state invalid.";
+			console.warn(errorMsg);
+			ErrorPopup(errorMsg);
+			break;
+	}
+}
 
 // TODO: Complete the rest of the hierarchy buttons.
 
@@ -160,6 +208,16 @@ function Request() {
 		case 'spaces':
 			url = 'team/' + currentRequest.id + '/space';
 			callback = SpacesLoaded;
+			break;
+
+		case 'folders':
+			url = 'space/' + currentRequest.id + '/folder';
+			callback = FoldersLoaded;
+			break;
+
+		case 'hiddenFolder':
+			url = 'space/' + currentRequest.id + '/list';
+			callback = HiddenFolderLoaded;
 			break;
 
 		// TODO: Other request types when needed.
@@ -238,6 +296,80 @@ function SpacesLoaded(e) {
 	// Remove loading bar and update button value.
 	spacesList.querySelector('.loading').remove();
 	document.querySelector('.workspace[data-id="' + currentRequest.id + 
+		'"] > .droparrow').value = 'shown';
+
+	// TODO: Should make this a function since it is repeated in other spots.
+	// Get and show remaining api limit.
+	apiCounter.innerHTML = "API usage left this minute: " + 
+	e.target.getResponseHeader('x-ratelimit-remaining') + "/100";
+}
+
+/**
+ * Callback for a request ready with folders.
+ * 
+ * Formats and displays the folders in the response and follows up with a 
+ * request for lists without a folder. Also updates the display of the API 
+ * limit.
+ * 
+ * @param {*} e The triggering event.
+ */
+function FoldersLoaded(e) {
+	// Get the spaces and the list to put them in.
+	let foldersList = document.querySelector('.space[data-id="' + 
+		currentRequest.id + '"] > .foldersList');
+	let folders = JSON.parse(e.target.responseText)["folders"];
+
+	// Make the html for each space.
+	for (const folder of folders) {
+		let folderLi = document.createElement('li');
+		folderLi.className = 'folder dropdown';
+		folderLi.dataset.id = folder.id;
+		folderLi.innerHTML = '<button type="button" class="droparrow" ' +
+			'value="unloaded" onclick="DropdownSpace(this)">' +
+			'<img src="media/drop-arrow.svg" alt=""></button>' +
+			'<button type="button" class="taskshow" ' +
+			'onclick="GetFolderTasks(this)">' + folder.name + '</button>';
+		// TODO: Fill in lists as well since they are included with each folder
+		foldersList.appendChild(folderLi);
+	}
+
+	// TODO: Should make this a function since it is repeated in other spots.
+	// Get and show remaining api limit.
+	apiCounter.innerHTML = "API usage left this minute: " + 
+	e.target.getResponseHeader('x-ratelimit-remaining') + "/100";
+
+	// Setup another request for any lists without a folder.
+	currentRequest.type = 'hiddenFolder';
+	Request();
+}
+
+/**
+ * Callback for a request ready with folder level lists.
+ * 
+ * Formats and displays the lists in the response. Also updates the display of 
+ * the API limit.
+ * 
+ * @param {*} e The triggering event.
+ */
+function HiddenFolderLoaded(e) {
+	// Get the lists and the list to put them in.
+	let foldersList = document.querySelector('.space[data-id="' + 
+		currentRequest.id + '"] > .foldersList');
+	let lists = JSON.parse(e.target.responseText)["lists"];
+
+	// Make the html for each list.
+	for (const list of lists) {
+		let listLi = document.createElement('li');
+		listLi.className = 'list';
+		listLi.dataset.id = list.id;
+		listLi.innerHTML = '<button type="button" class="taskshow" ' +
+			'onclick="GetListTasks(this)">' + list.name + '</button>';
+		foldersList.appendChild(listLi);
+	}
+
+	// Remove loading bar and update button value.
+	foldersList.querySelector('.loading').remove();
+	document.querySelector('.space[data-id="' + currentRequest.id + 
 		'"] > .droparrow').value = 'shown';
 
 	// TODO: Should make this a function since it is repeated in other spots.
