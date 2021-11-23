@@ -51,6 +51,7 @@ If you are hoping to use a "choose your own" API, you must also include a link t
 - https://commons.wikimedia.org/wiki/File:Ic_arrow_drop_down_36px.svg
 - https://www.reddit.com/r/loadingicon/comments/eerigj/it_all_makes_sense_now_oc/
 - https://commons.wikimedia.org/wiki/Category:Colored_flag_icons
+- https://loading.io/css/
 
 ## References
 - w3schools.com

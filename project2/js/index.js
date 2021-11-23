@@ -237,8 +237,7 @@ function DropdownWorkspace(target) {
 			// Make the list and put a loading symbol in it.
 			let spacesList = document.createElement('ul');
 			spacesList.className = 'spacesList';
-			spacesList.innerHTML = '<li class="loading"><img ' +
-			'src="media/acurate-loading-bar.gif" alt="loading"></li>';
+			spacesList.innerHTML = '<li class="loading"><div class="lds-dual-ring"></div></li>';
 			target.parentNode.appendChild(spacesList);
 
 			// Prepare request for the spaces.
@@ -295,8 +294,7 @@ function DropdownSpace(target) {
 			// Make the list and put a loading symbol in it.
 			let foldersList = document.createElement('ul');
 			foldersList.className = 'foldersList';
-			foldersList.innerHTML = '<li class="loading"><img ' +
-			'src="media/acurate-loading-bar.gif" alt="loading"></li>';
+			foldersList.innerHTML = '<li class="loading"><div class="lds-dual-ring"></div></li>';
 			target.parentNode.appendChild(foldersList);
 
 			// Prepare request for the folders.
@@ -795,14 +793,6 @@ function DisplayTasks() {
 				// TODO: Add a status indicator.
 				let breadCrumbs = document.createElement('span');
 				breadCrumbs.className = 'breadCrumbs';
-				/* TODO: Change this to search the hierarchy for whatever is 
-				marked active (after implementing such a marker) and get 
-				the task source from that. Otherwise changing view settings 
-				after sending any other request will screw with this. 
-				Alternatively I could only use the current request for getting 
-				tasks since thats probably the only thing that needs it to 
-				keep track between pages but then I would have to redo the 
-				request method. */
 				// Fill in breadcrumb trail depending on the source of the tasks.
 				switch (currentRequest.type) {
 					case 'workspaceTasks':
