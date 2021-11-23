@@ -9,10 +9,12 @@ let apiCounter;
 let settings;
 let currentRequest;
 let loadedTasks = [];
+let prefix = "nre5152-";
 // #endregion
 
 /**
- * Initializes several script scope references to html elements.
+ * Initializes several script scope references to html elements. Also gets and 
+ * applies any locally stored settings.
  */
 window.onload = () => {
 	tasksSection = document.querySelector('#tasks');
@@ -23,6 +25,28 @@ window.onload = () => {
 		group: document.querySelector('#group'),
 		sort: document.querySelector('#sort')
 	};
+
+	// Retrieve local storage.
+	let storageSort = localStorage.getItem(prefix + 'clickup-sort');
+	let storageGroup = localStorage.getItem(prefix + 'clickup-group');
+	let storageSubtasks = localStorage.getItem(prefix + 'clickup-subtasks');
+	let storageView = localStorage.getItem(prefix + 'clickup-view');
+	let storageTasks = localStorage.getItem(prefix + 'clickup-tasks');
+
+	if (storageSort) { settings.sort.value = storageSort; }
+	if (storageGroup) { settings.group.value = storageGroup; }
+	if (storageSubtasks) { settings.subtasks.value = storageSubtasks; }
+	if (storageView) { settings.view.value = storageView; }
+	if (storageTasks) {
+		currentRequest = JSON.parse(storageTasks);
+		currentRequest.page = 0;
+
+		// Show loading bar.
+		tasksSection.innerHTML = '<img class="loading" ' +
+			'src="media/acurate-loading-bar.gif" alt="loading">';
+
+		Request();
+	}
 }
 
 /**
@@ -351,6 +375,8 @@ function TasksLoaded(e) {
 		Request();
 	} else { // Otherwise start displaying them.
 		DisplayTasks();
+		// Store the view this came from.
+		localStorage.setItem(prefix + 'clickup-tasks', JSON.stringify(currentRequest));
 	}
 
 	// Get and show remaining api limit.
@@ -488,6 +514,12 @@ function HiddenFolderLoaded(e) {
  * settings.
  */
 function DisplayTasks() {
+	// Store current view in local storage.
+	localStorage.setItem(prefix + 'clickup-sort', settings.sort.value);
+	localStorage.setItem(prefix + 'clickup-group', settings.group.value);
+	localStorage.setItem(prefix + 'clickup-subtasks', settings.subtasks.value);
+	localStorage.setItem(prefix + 'clickup-view', settings.view.value);
+	
 	// Don't bother if there aren't any tasks.
 	if (loadedTasks.length < 1) {
 		return;
@@ -916,3 +948,4 @@ function DismissMsg(e) {
 
 // TODO: Show current view.
 // TODO: Use local storage for settings and task view.
+// TODO: Could save api requests by just filtering workspace tasks for scopes within.
