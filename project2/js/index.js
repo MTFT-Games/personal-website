@@ -179,7 +179,30 @@ function DropdownSpace(target) {
 	}
 }
 
-// TODO: Complete the rest of the hierarchy buttons.
+/**
+ * Toggles the dropdown visibility of lists within a folder.
+ * 
+ * @param {*} target The element that triggered the event.
+ */
+function DropdownFolder(target) {
+	switch (target.value) {
+		case 'shown':
+			target.value = 'loaded';
+			target.parentNode.querySelector('.listsList').style.display = 'none';
+			break;
+
+		case 'loaded':
+			target.value = 'shown';
+			target.parentNode.querySelector('.listsList').style.display = 'block';
+			break;
+	
+		default:
+			let errorMsg = "Dropdown button state invalid.";
+			console.warn(errorMsg);
+			ErrorPopup(errorMsg);
+			break;
+	}
+}
 
 /**
  * Assembles and sends an XMLHttpRequest according to the currentRequest.
@@ -319,17 +342,30 @@ function FoldersLoaded(e) {
 		currentRequest.id + '"] > .foldersList');
 	let folders = JSON.parse(e.target.responseText)["folders"];
 
-	// Make the html for each space.
+	// Make the html for each folder.
 	for (const folder of folders) {
 		let folderLi = document.createElement('li');
 		folderLi.className = 'folder dropdown';
 		folderLi.dataset.id = folder.id;
 		folderLi.innerHTML = '<button type="button" class="droparrow" ' +
-			'value="unloaded" onclick="DropdownSpace(this)">' +
+			'value="loaded" onclick="DropdownFolder(this)">' +
 			'<img src="media/drop-arrow.svg" alt=""></button>' +
 			'<button type="button" class="taskshow" ' +
 			'onclick="GetFolderTasks(this)">' + folder.name + '</button>';
-		// TODO: Fill in lists as well since they are included with each folder
+
+		// Fill in lists as well since they are included with each folder.
+		let listsList = document.createElement('ul');
+		listsList.className = 'listsList';
+		listsList.style.display = 'none';
+		for (const list of folder.lists) {
+			let listLi = document.createElement('li');
+			listLi.className = 'list';
+			listLi.dataset.id = list.id;
+			listLi.innerHTML = '<button type="button" class="taskshow" ' +
+				'onclick="GetListTasks(this)">' + list.name + '</button>';
+			listsList.appendChild(listLi);
+		}
+		folderLi.appendChild(listsList);
 		foldersList.appendChild(folderLi);
 	}
 
