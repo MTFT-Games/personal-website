@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+</head>
+
+<body>
+    <h1>Project 2 documentation (generated automatically from markdown notes)</h1>
+    <h1 id="requierments">Requierments</h1>
+    <ul>
+        <li>Functional<ul>
+                <li>Uses the ClickUp API</li>
+                <li>Stores view settings and last loaded tasks source in local
+                    storage</li>
+                <li>For controls it has: <ul>
+                        <li>The entire expandable hierarchy on the left with buttons
+                            on each workspace, space, folder, and list to expand them
+                            or shoe the tasks in that section</li>
+                        <li>The sort setting</li>
+                        <li>The group setting</li>
+                        <li>The subtask setting</li>
+                    </ul>
+                </li>
+                <li>No javascript errors are thrown by the app to my knowledge unless
+                    you count when I make a custom popup for something going wrong
+                    that doesnt throw an exception.</li>
+            </ul>
+        </li>
+        <li>design and interaction<ul>
+                <li>i think decent interface inspired by the clickup app</li>
+                <li>does not resemble GIPHY</li>
+                <li>controls are labeled </li>
+                <li>instructions are provided on first use.</li>
+                <li>errors are handled with a custom popup message</li>
+                <li>the state of the app is shown with a loading gif whenever the app
+                    is loading or waiting on an api request</li>
+                <li>It should be usable at various sizes but the responsiveness needs
+                    improvement</li>
+                <li>html and css is valid and images are almost all svg</li>
+                <li>all js is external using only let and const and queryselector
+                </li>
+                <li>dry is mostly followed although some improvements could likely be
+                    made</li>
+                <li>All functions have JSDoc comments and inline comments within. i
+                    think i did pretty good on the comments.</li>
+            </ul>
+        </li>
+    </ul>
+    <p>I think this is A- or B+. Especially when it is noted that i went above and
+        beyond and set up a cors-anywhere proxy on my own server as well as just the
+        amount of javascript that went into this app. I dont have much of a reference
+        but 1000+ lines of javascript seems like a lot...</p>
+    <h1 id="pitch">Pitch</h1>
+    <ul>
+        <li>What are you planning to create? Include purpose, audience, and main
+            functionality.<ul>
+                <li>A window into my to-do lists. Friends can see how busy I am
+                    before dragging me into a game or parents can see how I&#39;m
+                    keeping up with things, others can for any other reason see what
+                    I&#39;m currently working on and what I have to do, potential
+                    employers might look into the progress or plans for work in
+                    progress projects.</li>
+            </ul>
+        </li>
+        <li>What API(s) are you planning to use? If it&#39;s not one of the
+            pre-selected APIs, include a link to the documentation for it.
+            If you are hoping to use a &quot;choose your own&quot; API, you must also
+            include a link to a page on banjo where results from the API are visible
+            on a web page - no formatting necessary.<ul>
+                <li>API: Clickup<ul>
+                        <li>What is that?: A project/task management app <a
+                                href="https://clickup.com/">https://clickup.com/</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>Documentation: <a
+                        href="https://clickup.com/api">https://clickup.com/api</a>
+                </li>
+                <li>Test on banjo: <a
+                        href="https://people.rit.edu/nre5152/235/project2/test.html">https://people.rit.edu/nre5152/235/project2/test.html</a>
+                </li>
+                <li>Can I access it?: yes see above</li>
+                <li>Does it support CORS?: kinda no but i set up a proxy with a
+                    cors-anywhere nodejs server running on my server and configured
+                    the apache server hosting my website to send requests through to
+                    it when appropriate. it was kinda easy, I thought you said that
+                    would be a pain in the vid.<ul>
+                        <li>TLDR: No but i fixed it so it works anyway.</li>
+                    </ul>
+                </li>
+                <li>Does it require Oauth?: No, it can use a personal token or Oauth.
+                </li>
+                <li>Does it have a free tier?: Yes, free ClickUp accounts get 100
+                    requests per minute which I think is plenty for this usage.</li>
+            </ul>
+        </li>
+    </ul>
+    <p><img src="very_rough_mockup.png" alt="Layout sketch!"></p>
+    <h1 id="inspirations">Inspirations</h1>
+    <ul>
+        <li>Clickup</li>
+    </ul>
+    <h1 id="sources">Sources</h1>
+    <h2 id="images">Images</h2>
+    <ul>
+        <li><a
+                href="https://commons.wikimedia.org/wiki/File:Hamburger_icon.svg">https://commons.wikimedia.org/wiki/File:Hamburger_icon.svg</a>
+        </li>
+        <li><a
+                href="https://seekicon.com/free-icon/keyboard-arrow-down_2">https://seekicon.com/free-icon/keyboard-arrow-down_2</a>
+        </li>
+        <li><a
+                href="https://commons.wikimedia.org/wiki/File:Ic_arrow_drop_down_36px.svg">https://commons.wikimedia.org/wiki/File:Ic_arrow_drop_down_36px.svg</a>
+        </li>
+        <li><a
+                href="https://www.reddit.com/r/loadingicon/comments/eerigj/it_all_makes_sense_now_oc/">https://www.reddit.com/r/loadingicon/comments/eerigj/it_all_makes_sense_now_oc/</a>
+        </li>
+        <li><a
+                href="https://commons.wikimedia.org/wiki/Category:Colored_flag_icons">https://commons.wikimedia.org/wiki/Category:Colored_flag_icons</a>
+        </li>
+    </ul>
+    <h2 id="references">References</h2>
+    <ul>
+        <li>w3schools.com</li>
+        <li>class tutorials</li>
+        <li>api docs</li>
+    </ul>
+
+</body>
+
+</html>
