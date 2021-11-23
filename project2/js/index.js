@@ -891,7 +891,7 @@ function DisplayTasks() {
 	}
 
 	// Add subtasks to their parent task if needed.
-	if (settings.subtasks.value != "separate") {
+	if (settings.subtasks.value != "separate" && settings.subtasks.value != "none") {
 		ErrorPopup("Subtask settings other than separate are not implemented yet.");
 		// TODO: Add subtasks to their parent task.
 	}
@@ -1016,5 +1016,4 @@ function DismissMsg(e) {
 // #endregion
 
 // TODO: Show current view.
-// TODO: Use local storage for settings and task view.
 // TODO: Could save api requests by just filtering workspace tasks for scopes within.

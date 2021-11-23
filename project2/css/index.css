@@ -232,6 +232,12 @@ TODO: Improve scrollbar.
 @media only screen and (max-width: 1320px) {
     .tagline { display: none; }
 }
+@media only screen and (max-width: 1100px) {
+    .tagline { display: none; }
+    header, main {
+        font-size: unset;
+    }
+}
 @media only screen and (max-width: 900px) {
     .tagline { display: none; }
     header, main {
