@@ -146,10 +146,12 @@
 						plan down we started building the various systems.
 					</p>
 					<p>
-						The core gameplay loop we ended up with consists of starting at
-						the menu screen, spawning into a randomly selected wave, fighting
-						3 waves, shopping for upgrades during the break, starting the next
-						set of waves, repeat until death and then repeat from the menu.
+						The core gameplay loop we ended up with was worked on a bit 
+						by everyone and consists of starting at the menu screen, 
+						spawning into a randomly selected wave, fighting 3 waves, 
+						shopping for upgrades during the break, starting the next 
+						set of waves, repeat until death and then repeat from 
+						the menu.
 					</p>
 					<p>
 						Speaking of which, the wave system was built to read a text file
@@ -158,20 +160,22 @@
 						similar to the map files but instead of a tile id at every spot,
 						its a number representing one of the enemy types: chaser, pacer,
 						ranged, and flying types, where they all behave as their name
-						would suggest.
+						would suggest. According to git, this was mostly developed by 
+						me with misc additions from everyone.
 					</p>
 					<p>
 						Similarly, the shop system for upgrades also reads in a file with
 						a list of possible upgrades and displays three random selections
 						in each shop. Those upgrades that it selects from were built to be
 						as flexible as possible, being able to change any stat we could
-						think of, any number of them at once, and in either a flatt added
-						value or a multiplicative one.
+						think of, any number of them at once, and in either a flat added
+						value or a multiplicative one. This was also mostly done by me 
+						with some foundation by others.
 					</p>
 					<p>
 						Maps were planned to be randomly selected from a folder of tile
 						based map files every so many waves but due to time constraints we
-						only ended up having one map. The system to randomly select them
+						only ended up having one map loaded. The system to randomly select them
 						is mostly finished so this may be added in the future as I come
 						back to this project.
 					</p>
