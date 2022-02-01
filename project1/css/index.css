@@ -201,6 +201,43 @@ figure img {
     top: 1em;
     height: 2.5em; }
 
+
+#pop-warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pop-check {
+    display: none;
+}
+
+#unfinished-warn {
+    font-size: 1.5rem;
+    width: 70%;
+    margin: auto;
+    padding: 2.5rem;
+    border-radius: 5rem;
+    background-color: darkgrey;
+    color: black;
+}
+
+#pop-check:checked~#pop-warning {
+    display: none;
+}
+
+#pop-btn {
+    border-radius: 1rem;
+    background-color: darkgoldenrod;
+    padding: 0.3rem 0.5rem;
+}
+
 /* Responsive breakpoints */
 @media only screen and (max-width: 1320px) {
     .tagline { display: none; }
