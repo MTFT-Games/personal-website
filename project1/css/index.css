@@ -114,7 +114,7 @@ header a, .gallery a {
     bottom: 0;
     width: 100%;
     opacity: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 .hover-details div p, .hover-details div h3 {
     -webkit-user-select: none;
@@ -142,7 +142,8 @@ header a, .gallery a {
 
 /* Projects */
 .project {
-    display: grid;
+    display: grid;    
+    padding-bottom: 3em;
     grid-template-columns: 5vw 2fr 2em 426px 5vw;
     grid-template-rows: 200px auto auto;
     grid-template-areas: "header header    header header  header"
@@ -161,6 +162,12 @@ header a, .gallery a {
     grid-area: header;
     text-indent: -200vw;
     background: #1E1E1E url(../media/bankshot/banner-1296x200.png) no-repeat center scroll;
+}
+#void-break .banner {
+    margin: 0;
+    grid-area: header;
+    text-indent: -200vw;
+    background: #1E1E1E url(../media/void-break/banner.png) no-repeat center scroll;
 }
 .proj-main-desc { 
     grid-area: main-desc;
@@ -189,6 +196,9 @@ figure img {
     height: 100%;
     padding: 0;
     position: absolute;
+}
+.proj-playable {
+    grid-area: video;
 }
 .proj-desc { grid-area: desc; }
 .project {
