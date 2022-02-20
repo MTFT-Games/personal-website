@@ -27,7 +27,7 @@ h1 {
     margin: 0; 
     font-size: 1.5em;
 }
-a {
+header a, .gallery a {
     text-decoration: none;
     color: unset;
 }
@@ -144,7 +144,7 @@ a {
 .project {
     display: grid;
     grid-template-columns: 5vw 2fr 2em 426px 5vw;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: 200px auto auto;
     grid-template-areas: "header header    header header  header"
                          "...... main-desc ...... figures ......"
                          "...... video     ...... desc    ......";
@@ -155,6 +155,12 @@ a {
     padding: 3em 0;
     background-image: url(https://via.placeholder.com/2000x200);
     grid-area: header;
+}
+#bankshot .banner {
+    margin: 0;
+    grid-area: header;
+    text-indent: -200vw;
+    background: #1E1E1E url(../media/bankshot/banner-1296x200.png) no-repeat center scroll;
 }
 .proj-main-desc { 
     grid-area: main-desc;
