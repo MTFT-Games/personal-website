@@ -157,6 +157,12 @@ header a, .gallery a {
     background-image: url(https://via.placeholder.com/2000x200);
     grid-area: header;
 }
+#factorio-library .banner {
+    margin: 0;
+    grid-area: header;
+    text-indent: -200vw;
+    background: #1E1E1E url(../media/factorio-library/factorio-banner.png) no-repeat center scroll;
+}
 #bankshot .banner {
     margin: 0;
     grid-area: header;
