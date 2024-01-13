@@ -1,10 +1,16 @@
-html { scroll-behavior: smooth; }
-body { 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
     background-color: grey;
     color: white;
     overflow-x: hidden;
 }
-main { font-size: 1.3rem; }
+
+main {
+    font-size: 1.3rem;
+}
 
 /* Nav bar */
 header {
@@ -14,41 +20,52 @@ header {
     background-color: darkslategray;
     font-size: 1.5rem;
 }
-.nav-logo { 
+
+.nav-logo {
     display: flex;
     align-items: center;
     margin-right: auto;
 }
+
 .nav-logo img {
     margin-right: 1em;
     height: 2.5em;
 }
-h1 { 
-    margin: 0; 
+
+h1 {
+    margin: 0;
     font-size: 1.5em;
 }
-header a, .gallery a {
+
+header a,
+.gallery a {
     text-decoration: none;
     color: unset;
 }
-#mobile-nav-btn, #mobile-nav-lbl {
+
+#mobile-nav-btn,
+#mobile-nav-lbl {
     display: none;
 }
+
 .nav-bar {
     display: flex;
     align-items: center;
     padding: 0;
 }
-.nav-link { 
+
+.nav-link {
     display: block;
     padding: 0 0.5em;
     font-weight: bold;
 }
+
 .nav-dropdown {
     position: relative;
     overflow: visible;
 }
-.nav-dropdown ul { 
+
+.nav-dropdown ul {
     position: absolute;
     transition: all 0.3s ease-in-out;
     transform-origin: top;
@@ -60,9 +77,11 @@ header a, .gallery a {
     list-style: none;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
 .nav-dropdown:hover ul {
     transform: scaleY(1);
 }
+
 .nav-link img {
     height: 0.6em;
     padding-left: 0.2em;
@@ -74,126 +93,157 @@ header a, .gallery a {
     justify-content: space-around;
     margin: 3em 0;
 }
-#about article { 
+
+#about article {
     background-color: darkslategray;
     box-sizing: border-box;
     padding: 1.5em;
 }
+
 .bio {
     width: 33%;
     line-height: 1.5em;
 }
+
 #about article h2 {
     margin-top: 0;
 }
+
 .skills {
     line-height: 3em;
 }
 
 /* Gallery */
-#projects { 
-    background-color: dimgray; 
+#projects {
+    background-color: dimgray;
 }
+
 #projects h2 {
     padding-top: 1.5em;
     margin-bottom: 0;
 }
+
 .gallery {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
-.hover-details { 
+
+.hover-details {
     position: relative;
     margin: 2em 0;
 }
+
 .hover-details div {
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
-    width: 100%;
+    bottom: 5.52px;
+    /* width: 100%; */
     opacity: 0;
+    overflow-y: auto;
+    padding: 0 0.3em;
     background-color: rgba(0, 0, 0, 0.7);
 }
-.hover-details div p, .hover-details div h3 {
+
+.hover-details div p,
+.hover-details div h3 {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
+
 .hover-details div p {
     margin-bottom: 4em;
 }
+
 .hover-details div a {
     padding: 1em;
     background-color: blue;
 }
+
 .hover-details * {
     transition: .3s all;
 }
+
 .hover-details:hover img {
     -webkit-filter: blur(2px);
     filter: blur(2px);
 }
+
 .hover-details:hover div {
     opacity: 1;
 }
 
 /* Projects */
 .project {
-    display: grid;    
+    display: grid;
     padding-bottom: 3em;
     grid-template-columns: 5vw 2fr 2em 426px 5vw;
     grid-template-rows: 200px auto auto;
     grid-template-areas: "header header    header header  header"
-                         "...... main-desc ...... figures ......"
-                         "...... video     ...... desc    ......";
+        "...... main-desc ...... figures ......"
+        "...... video     ...... desc    ......";
     /* Consider changing this to two grid columns with a vertical flex container in each. */
 }
+
 .project h3 {
     margin: 0;
     padding: 3em 0;
     background-image: url(https://via.placeholder.com/2000x200);
     grid-area: header;
 }
+
 #factorio-library .banner {
     margin: 0;
     grid-area: header;
     text-indent: -200vw;
     background: #1E1E1E url(../media/factorio-library/factorio-banner.png) no-repeat center scroll;
 }
+
 #bankshot .banner {
     margin: 0;
     grid-area: header;
     text-indent: -200vw;
     background: #1E1E1E url(../media/bankshot/banner-1296x200.png) no-repeat center scroll;
 }
+
 #void-break .banner {
     margin: 0;
     grid-area: header;
     text-indent: -200vw;
     background: #1E1E1E url(../media/void-break/banner.png) no-repeat center scroll;
 }
-.proj-main-desc { 
+
+.proj-main-desc {
     grid-area: main-desc;
 }
-.project .figs { grid-area: figures; }
-figure { margin: 1em 0; }
+
+.project .figs {
+    grid-area: figures;
+}
+
+figure {
+    margin: 1em 0;
+}
+
 figure img {
     width: 100%;
 }
-.proj-demo { 
+
+.proj-demo {
     grid-area: video;
     /*width: 845px;
     height: 480px;*/
-    left: 0; 
+    left: 0;
     width: 100%;
     height: 0;
     position: relative;
     padding-bottom: 56.25%;
     margin: 0 auto 2em;
 }
+
 .proj-demo iframe {
     border: 0;
     top: 0;
@@ -203,25 +253,36 @@ figure img {
     padding: 0;
     position: absolute;
 }
+
 .proj-playable {
     grid-area: video;
 }
-.proj-desc { grid-area: desc; }
+
+.proj-desc {
+    grid-area: desc;
+}
+
 .project {
     background-color: rgba(0, 0, 0, 0.8);
     line-height: 1.2em;
 }
 
 /* General */
-.center-txt, figure { text-align: center; }
-.fine-print { 
+.center-txt,
+figure {
+    text-align: center;
+}
+
+.fine-print {
     margin: 0;
     padding: 0;
 }
-.icon { 
+
+.icon {
     position: relative;
     top: 1em;
-    height: 2.5em; }
+    height: 2.5em;
+}
 
 
 #pop-warning {
@@ -260,16 +321,29 @@ figure img {
     padding: 0.3rem 0.5rem;
 }
 
+.todo {
+    background-color: yellow;
+    color: black;
+}
+
 /* Responsive breakpoints */
 @media only screen and (max-width: 1320px) {
-    .tagline { display: none; }
+    .tagline {
+        display: none;
+    }
 }
+
 @media only screen and (max-width: 900px) {
-    .tagline { display: none; }
-    header, main {
+    .tagline {
+        display: none;
+    }
+
+    header,
+    main {
         font-size: unset;
     }
-    .nav-bar { 
+
+    .nav-bar {
         display: none;
         position: absolute;
         top: 100px;
@@ -277,27 +351,34 @@ figure img {
         background-color: grey;
         font-size: 2em;
     }
+
     .nav-logo {
         height: 2em;
     }
+
     .nav-link {
         border-bottom: 1px solid black;
     }
+
     #mobile-nav-lbl {
         display: block;
         height: 2em;
         cursor: pointer;
     }
+
     #mobile-nav-lbl img {
         height: 100%;
     }
+
     #mobile-nav-btn:checked+.nav-bar {
         display: block;
     }
+
     .nav-dropdown ul {
         display: none;
         position: static;
     }
+
     .nav-dropdown:hover ul {
         display: block;
     }
@@ -306,6 +387,7 @@ figure img {
         flex-direction: column;
         margin: 1.5em;
     }
+
     .bio {
         width: unset;
     }
