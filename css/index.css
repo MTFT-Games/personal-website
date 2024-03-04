@@ -92,6 +92,7 @@ header a,
     display: flex;
     justify-content: space-around;
     margin: 3em 0;
+    height: 520px; /* this isnt gonna scale well but it will make it work for the moment...*/
 }
 
 #about article {
