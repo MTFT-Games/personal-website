@@ -195,6 +195,10 @@ header a,
     background-image: url(https://via.placeholder.com/2000x200);
     grid-area: header;
 }
+#devcade .banner {
+    background: url(../media/devcade/DevcadeLogo.png) no-repeat center/25% scroll, linear-gradient(rgba(0, 0, 0, 0) 50%, /*#25021A*/ rgba(0, 0, 0, 0.8) 100%),
+    repeat top/5.5em url('../media/devcade/csh_tilted.png');
+}
 
 #factorio-library .banner {
     margin: 0;
