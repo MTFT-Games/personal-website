@@ -307,20 +307,43 @@
 			<article id="void-break" class="project">
 				<h3 class="center-txt banner">Void Break</h3>
 				<div class="proj-main-desc">
-					<h4>Asteroids like arcade game in JavaScript with PixiJS</h4>
+					<h4>Asteroids-inspired arcade game, now built in Rust!</h4>
 					<p>
 						Void Break is an arcade style game based heavily off of
 						Asteroids with some inspiration from Nova Drift and
-						Bosconian. It's built in JavaScript with PixiJS for graphics
-						and Howler for sound effects. Originally built for a class
-						project, the deveopment was time constrained to 2 weeks and
-						further limited by other classwork. What came out after those
-						2 weeks is a good base for hopefully something much bigger as
-						I plan to expand and build on this as I find myself with time
-						to work on it.
+						Bosconian. It's now built in Rust using the Bevy engine 
+						but was originally made in JavaScript with PixiJS and 
+						later using Canvas and some React. 
 					</p>
 					<p>
-						The game plays very similar to Asteroids in the basic
+						Originally, the project was built for a class project using PixiJS 
+						for the first time. For this first iteration, the deveopment 
+						was time constrained to 2 weeks and further limited by other 
+						classwork. What came out after those 2 weeks was a good base 
+						for hopefully something much bigger as I planned to expand 
+						and build on this as I find myself with time to work on it.
+					</p>
+					<p>
+						Soon after this, another class provided the opportunity to 
+						continue working on it in Canvas. So for that project I 
+						rewrote the core of the games rendering while learning the 
+						new framework but due to similar time constraints, didn't 
+						get much further with features. Later on, React was also 
+						added in to the surrounding web page.
+					</p>
+					<p>
+						Finally, in this past year, I had a desire to both learn 
+						Rust and work more on the Void Break project so once again, 
+						the project was rewritten using the Bevy engine. This time 
+						wasn't just learning a new engine or framework though, it 
+						was learning a whole new language and still in a relatively 
+						short period. At the point where this burst of work finished 
+						and other projects and school work took over again, the 
+						codebase is set up to expand significantly and, with some 
+						growing pains from the transition, running again.
+					</p>
+					<p>
+						At this point he game plays very similar to Asteroids in the basic
 						concepts and objective but varies in several ways. The first
 						of which is the movement style, where in Asteroids there is
 						no friction whatsoever, here there is a good bit of friction.
@@ -340,20 +363,21 @@
 						over the edges.
 					</p>
 					<p>
-						The health system uses a shield and health bar instead of
-						lives and the shield starts to replenish after several
-						seconds of not taking damage.
-					</p>
-					<p>
-						The asteroids are spawned with a size and frequency dependant
+						In the original implementations the asteroids were 
+						spawned with a size and frequency dependant
 						on the current score and the number of asteroids already in
-						existence. The shape is randomly generated for each asteroid
+						existence. The shape was randomly generated for each asteroid
 						and velocity as well as initial placement are random. Upon
 						breaking an asteroid, it will fragment into others if it is
-						large enough and increment the score.
+						large enough and increment the score. In the newer rust 
+						implementation, some other aspects were prioritized and 
+						due to the way the new engine works, procedural shapes were 
+						more involved to draw. Workarounds have been explored however 
+						and will be implemented along with much more as more 
+						free time becomes available to work on it.
 					</p>
 					<p>
-						Since it a web game made in JavaScript, you can try it out
+						Since the original was a web game made in JavaScript, you can try it out
 						right here in your browser!
 					</p>
 				</div>
@@ -377,10 +401,10 @@
 					in a new window here:
 					<a href="https://people.rit.edu/nre5152/235/project3/game.html"
 						target="_blank">Void Break</a>.
-					<br>Or if you are interested, the whole project is on GitHub
+					<br>Or if you are interested, the original project is on GitHub
 					<a href="https://github.com/MTFT-Games/Void-Break_PixiJS">
 						here
-					</a>.
+					</a> and the latest iteration can be found <a href="https://github.com/MTFT-Games/void-break-reborn">here</a>.
 				</p>
 			</article>
 			<article id="factorio-library" class="project">
